@@ -30,10 +30,12 @@ then visit `http://localhost:8000`.
    not by a professional/native translator. It should read naturally, but a
    native-speaker pass (especially on the musical/academic terminology) is
    worth doing before this is considered final.
-4. **Google Form ownership** — the form was created under the Google account
-   used to build this site (not Chenwangsax@gmail.com), so new-response email
-   notifications currently go there. See "Setting up the contact form" below
-   for how to share access or transfer ownership to the client's account.
+4. **Google Form ownership** — the form is still owned/editable only by the
+   Google account used to build this site (not Chenwangsax@gmail.com). Email
+   notifications for new responses now go to Chenwangsax@gmail.com (via an
+   Apps Script trigger, see below), but if Chen ever needs to edit the form's
+   questions himself, he'd need to be added as an editor or receive an
+   ownership transfer — see "Contact form" below.
 
 ## Bilingual (English / 中文)
 
@@ -66,15 +68,17 @@ in `index.html`'s `contact-form-wrap` section.
   added as an editor — see below).
 - **View responses**: the form's Responses tab, or link it to a Google Sheet
   via "Link to Sheets" there.
-- **Email notifications**: already turned on ("Get email notifications for
-  new responses"), but they go to the Google account that owns the form —
-  currently the account used to build this site, not Chenwangsax@gmail.com.
-  To fix that, either:
+- **Email notifications**: every new response emails Chenwangsax@gmail.com
+  directly. This runs via a bound Apps Script (Extensions/⋮ menu → Apps
+  Script) with an `onFormSubmit(e)` function and an installable "On form
+  submit" trigger — not the form's native "Get email notifications" toggle
+  (that's also on, but only notifies the form's owner). To change the
+  recipient, edit the `to:` address in the Apps Script's `Code.gs`.
+- **Form editing access**: still limited to the Google account that created
+  the form. If Chen needs to edit questions himself, either:
   1. Click the "add person" icon in the form editor and add
-     Chenwangsax@gmail.com as an Editor (notifications still go to the
-     owner, but Chen could self-manage the form), or
-  2. Transfer ownership entirely (Editor access → change role to Owner) so
-     notifications go directly to Chenwangsax@gmail.com.
+     Chenwangsax@gmail.com as an Editor, or
+  2. Transfer ownership entirely (Editor access → change role to Owner).
 - **To rebuild from scratch**: create a new form at
   [forms.google.com](https://forms.google.com), then Publish it →
   overflow menu (⋮) → **Embed HTML** → copy the `src="..."` URL → paste it

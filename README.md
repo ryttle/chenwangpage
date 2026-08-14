@@ -1,8 +1,9 @@
-# Chen Wang — Saxophonist Website
+# Chen Wang Sax Studio Website
 
-A single-page site for saxophonist Chen Wang: hero intro, bio, awards,
-SoundCloud recordings, and a Google Form contact section. Plain HTML/CSS/JS —
-no build step, deploys straight to GitHub Pages.
+A single-page site for Chen Wang Sax Studio (王晨萨克斯管工作室), the teaching
+studio led by saxophonist Chen Wang: hero intro, bio, awards, SoundCloud
+recordings, studio policy, and a Google Form contact section. Plain
+HTML/CSS/JS — no build step, deploys straight to GitHub Pages.
 
 Content (bio, awards, education, recordings, photos) was migrated from the
 client's previous Squarespace site.
@@ -19,18 +20,22 @@ then visit `http://localhost:8000`.
 
 ## Still pending
 
-1. **Location** — the old site never listed an explicit city/address. The
+1. **Studio Policy content** — the `#policy` section (both `lang-en` and
+   `lang-zh` paragraphs) currently holds placeholder text (lesson
+   cancellation/makeup, billing, materials). Replace it with the studio's
+   real policy once provided.
+2. **Location** — the old site never listed an explicit city/address. The
    Contact section currently shows only Email; add a location line if wanted.
-2. **YouTube videos** — there's no dedicated video section on the site right
+3. **YouTube videos** — there's no dedicated video section on the site right
    now (the old site had none either). If Chen wants to showcase performance
    videos later, a new section can be added — check git history (before the
    "Recent Arrangement" migration commit) for the original `video-grid`
    markup/CSS pattern to reuse.
-3. **Chinese translation review** — the Chinese content was AI-translated,
+4. **Chinese translation review** — the Chinese content was AI-translated,
    not by a professional/native translator. It should read naturally, but a
    native-speaker pass (especially on the musical/academic terminology) is
    worth doing before this is considered final.
-4. **Google Form ownership** — the form is still owned/editable only by the
+5. **Google Form ownership** — the form is still owned/editable only by the
    Google account used to build this site (not Chenwangsax@gmail.com). Email
    notifications for new responses now go to Chenwangsax@gmail.com (via an
    Apps Script trigger, see below), but if Chen ever needs to edit the form's
@@ -96,6 +101,11 @@ in `index.html`'s `contact-form-wrap` section.
   `assets/photos/about.jpg` (About section) were pulled from the old site.
   Replace either file (same filename) to swap photos.
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
+- **Studio Policy** — edit the `#policy` section's `lang-en`/`lang-zh` paragraphs directly in `index.html`.
+- **Studio/brand name** — "Chen Wang Sax Studio" / "王晨萨克斯管工作室" appears in
+  the nav logo, hero heading, `<title>`, and footer. Chen's personal name
+  ("Chen Wang" / "王晨") is kept in the About bio and elsewhere it refers to
+  him specifically.
 
 ## Deploying to GitHub Pages
 

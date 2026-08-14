@@ -413,6 +413,15 @@ a:hover { text-decoration: underline; }
 }
 .arrangement-grid .audio-card { margin: 0; }
 
+/* Studio Policy */
+.policy-copy {
+  max-width: 720px;
+}
+.policy-copy p {
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
 /* Audio */
 .audio-stack {
   display: flex;

@@ -4,8 +4,8 @@ document.querySelectorAll('.year-el').forEach((el) => {
 
 // Language toggle
 const TITLES = {
-  en: 'Chen Wang | Saxophonist',
-  zh: '王晨 | 萨克斯演奏家',
+  en: 'Chen Wang Sax Studio',
+  zh: '王晨萨克斯管工作室',
 };
 const NAV_TOGGLE_LABELS = {
   en: 'Toggle navigation',

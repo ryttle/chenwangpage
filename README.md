@@ -20,9 +20,9 @@ then visit `http://localhost:8000`.
 ## Still pending
 
 1. **Contact form** — still points at a placeholder Google Form embed URL (see below).
-2. **Location** — the old site never listed an explicit city/address, so the
-   Contact section shows "Affiliation: University of Washington School of
-   Music" instead. Swap in a real location if wanted.
+2. **Location** — the old site never listed an explicit city/address. The
+   Contact section currently shows only Email and Instagram; add a location
+   line if wanted.
 3. **YouTube videos** — there's no dedicated video section on the site right
    now (the old site had none either). If Chen wants to showcase performance
    videos later, a new section can be added — check git history (before the

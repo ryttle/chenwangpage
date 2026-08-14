@@ -36,7 +36,7 @@ window.addEventListener('scroll', () => {
 onScroll();
 
 // Scroll-reveal for elements marked .reveal, staggered within grids
-const staggerGroups = document.querySelectorAll('.video-grid, .audio-stack, .awards-grid');
+const staggerGroups = document.querySelectorAll('.audio-stack, .awards-grid');
 staggerGroups.forEach((group) => {
   group.querySelectorAll('.reveal').forEach((el, i) => {
     el.style.setProperty('--stagger', `${i * 0.12}s`);

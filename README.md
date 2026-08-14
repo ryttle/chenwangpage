@@ -19,18 +19,15 @@ then visit `http://localhost:8000`.
 
 ## Still pending
 
-1. **Performances (YouTube)** — the previous site had no YouTube videos, so
-   this section currently shows a "coming soon" placeholder instead of broken
-   embeds. Once real performance videos exist:
-   - Restore a `video-grid` of `video-card` items (see git history for the
-     original markup/CSS, still intact in `style.css`).
-   - For each `video-embed` iframe, use
-     `https://www.youtube.com/embed/VIDEO_ID` with the ID from the video's URL
-     (`youtube.com/watch?v=THIS_PART`).
-2. **Contact form** — still points at a placeholder Google Form embed URL (see below).
-3. **Location** — the old site never listed an explicit city/address, so the
+1. **Contact form** — still points at a placeholder Google Form embed URL (see below).
+2. **Location** — the old site never listed an explicit city/address, so the
    Contact section shows "Affiliation: University of Washington School of
    Music" instead. Swap in a real location if wanted.
+3. **YouTube videos** — there's no dedicated video section on the site right
+   now (the old site had none either). If Chen wants to showcase performance
+   videos later, a new section can be added — check git history (before the
+   "Recent Arrangement" migration commit) for the original `video-grid`
+   markup/CSS pattern to reuse.
 
 ## Setting up the contact form (Google Forms)
 

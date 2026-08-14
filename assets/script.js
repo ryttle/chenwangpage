@@ -5,7 +5,7 @@ document.querySelectorAll('.year-el').forEach((el) => {
 // Language toggle
 const TITLES = {
   en: 'Chen Wang Sax Studio',
-  zh: '王晨萨克斯管工作室',
+  zh: '王晨萨克斯工作室',
 };
 const NAV_TOGGLE_LABELS = {
   en: 'Toggle navigation',

@@ -1,6 +1,6 @@
 # Chen Wang Sax Studio Website
 
-A single-page site for Chen Wang Sax Studio (王晨萨克斯管工作室), the teaching
+A single-page site for Chen Wang Sax Studio (王晨萨克斯工作室), the teaching
 studio led by saxophonist Chen Wang: hero intro, bio, awards, SoundCloud
 recordings, studio policy, and a Google Form contact section. Plain
 HTML/CSS/JS — no build step, deploys straight to GitHub Pages.
@@ -102,7 +102,7 @@ in `index.html`'s `contact-form-wrap` section.
   Replace either file (same filename) to swap photos.
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
 - **Studio Policy** — edit the `#policy` section's `lang-en`/`lang-zh` paragraphs directly in `index.html`.
-- **Studio/brand name** — "Chen Wang Sax Studio" / "王晨萨克斯管工作室" appears in
+- **Studio/brand name** — "Chen Wang Sax Studio" / "王晨萨克斯工作室" appears in
   the nav logo, hero heading, `<title>`, and footer. Chen's personal name
   ("Chen Wang" / "王晨") is kept in the About bio and elsewhere it refers to
   him specifically.

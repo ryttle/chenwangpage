@@ -1,4 +1,45 @@
-document.getElementById('year').textContent = new Date().getFullYear();
+document.querySelectorAll('.year-el').forEach((el) => {
+  el.textContent = new Date().getFullYear();
+});
+
+// Language toggle
+const TITLES = {
+  en: 'Chen Wang | Saxophonist',
+  zh: '王晨 | 萨克斯演奏家',
+};
+const NAV_TOGGLE_LABELS = {
+  en: 'Toggle navigation',
+  zh: '切换导航菜单',
+};
+const BACK_TO_TOP_LABELS = {
+  en: 'Back to top',
+  zh: '返回顶部',
+};
+
+const langToggle = document.getElementById('langToggle');
+const langToggleTarget = langToggle.querySelector('.lang-toggle-target');
+
+function applyLang(lang) {
+  document.documentElement.lang = lang;
+  document.documentElement.dataset.lang = lang;
+  document.title = TITLES[lang];
+
+  document.querySelectorAll('.lang-en').forEach((el) => { el.hidden = lang !== 'en'; });
+  document.querySelectorAll('.lang-zh').forEach((el) => { el.hidden = lang !== 'zh'; });
+
+  langToggleTarget.textContent = lang === 'en' ? '中文' : 'EN';
+  document.getElementById('navToggle').setAttribute('aria-label', NAV_TOGGLE_LABELS[lang]);
+  document.getElementById('backToTop').setAttribute('aria-label', BACK_TO_TOP_LABELS[lang]);
+
+  localStorage.setItem('lang', lang);
+}
+
+applyLang(document.documentElement.dataset.lang || 'en');
+
+langToggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.lang === 'en' ? 'zh' : 'en';
+  applyLang(next);
+});
 
 const navToggle = document.getElementById('navToggle');
 const siteNav = document.getElementById('siteNav');

@@ -9,6 +9,16 @@
   --max-width: 1080px;
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading-zh: 'Noto Serif SC', 'Cormorant Garamond', Georgia, serif;
+  --font-body-zh: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html[data-lang="zh"] body { font-family: var(--font-body-zh); }
+html[data-lang="zh"] h1,
+html[data-lang="zh"] h2,
+html[data-lang="zh"] h3,
+html[data-lang="zh"] .logo {
+  font-family: var(--font-heading-zh);
 }
 
 * { box-sizing: border-box; }
@@ -110,6 +120,24 @@ a:hover { text-decoration: underline; }
 }
 .site-nav a:hover { color: var(--brass-light); text-decoration: none; }
 .site-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.lang-toggle {
+  margin-left: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.lang-toggle:hover {
+  border-color: var(--brass);
+  color: var(--brass-light);
+}
 
 .nav-toggle {
   display: none;
@@ -503,9 +531,13 @@ a:hover { text-decoration: underline; }
     transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
   }
   .site-nav.open {
-    max-height: 300px;
+    max-height: 360px;
     opacity: 1;
     padding: 16px 24px;
+  }
+  .lang-toggle {
+    margin-left: 0;
+    align-self: flex-start;
   }
   .hero { padding: 90px 0 70px; }
   .hero-photo { padding: 110px 0 80px; }

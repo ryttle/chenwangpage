@@ -28,6 +28,29 @@ then visit `http://localhost:8000`.
    videos later, a new section can be added — check git history (before the
    "Recent Arrangement" migration commit) for the original `video-grid`
    markup/CSS pattern to reuse.
+4. **Chinese translation review** — the Chinese content was AI-translated,
+   not by a professional/native translator. It should read naturally, but a
+   native-speaker pass (especially on the musical/academic terminology) is
+   worth doing before this is considered final.
+
+## Bilingual (English / 中文)
+
+Every piece of visible text has an English and a Chinese version living side
+by side in the HTML, toggled with a "中文" / "EN" button in the nav.
+
+- English text is wrapped in `<span class="lang-en">` (or a whole `<p class="lang-en">`
+  for longer passages); the Chinese counterpart uses `class="lang-zh" hidden`.
+  `assets/script.js` flips the `hidden` attribute on whichever set doesn't
+  match the active language — this works for any element type, so it's used
+  uniformly for spans, paragraphs, and list items.
+- The active language is stored in `localStorage` (`lang` key) and restored
+  on future visits; first-time visitors get English unless their browser is
+  set to Chinese.
+- To edit either language's copy, find the matching `lang-en`/`lang-zh` pair
+  in `index.html` and edit the text directly — just keep both versions in
+  sync when one changes.
+- Client's Chinese name is 王晨 (used throughout the `lang-zh` content and
+  page title); "Chen Wang" is used in English.
 
 ## Setting up the contact form (Google Forms)
 

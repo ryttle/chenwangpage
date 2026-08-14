@@ -19,18 +19,21 @@ then visit `http://localhost:8000`.
 
 ## Still pending
 
-1. **Contact form** — still points at a placeholder Google Form embed URL (see below).
-2. **Location** — the old site never listed an explicit city/address. The
+1. **Location** — the old site never listed an explicit city/address. The
    Contact section currently shows only Email; add a location line if wanted.
-3. **YouTube videos** — there's no dedicated video section on the site right
+2. **YouTube videos** — there's no dedicated video section on the site right
    now (the old site had none either). If Chen wants to showcase performance
    videos later, a new section can be added — check git history (before the
    "Recent Arrangement" migration commit) for the original `video-grid`
    markup/CSS pattern to reuse.
-4. **Chinese translation review** — the Chinese content was AI-translated,
+3. **Chinese translation review** — the Chinese content was AI-translated,
    not by a professional/native translator. It should read naturally, but a
    native-speaker pass (especially on the musical/academic terminology) is
    worth doing before this is considered final.
+4. **Google Form ownership** — the form was created under the Google account
+   used to build this site (not Chenwangsax@gmail.com), so new-response email
+   notifications currently go there. See "Setting up the contact form" below
+   for how to share access or transfer ownership to the client's account.
 
 ## Bilingual (English / 中文)
 
@@ -51,18 +54,31 @@ by side in the HTML, toggled with a "中文" / "EN" button in the nav.
 - Client's Chinese name is 王晨 (used throughout the `lang-zh` content and
   page title); "Chen Wang" is used in English.
 
-## Setting up the contact form (Google Forms)
+## Contact form (Google Forms)
 
-1. Go to [forms.google.com](https://forms.google.com) and create a new form
-   with the fields you want (Name, Email, Message, etc.).
-2. Click **Send** (top right) → choose the **embed `<>`** icon.
-3. Copy the `src="..."` URL from the embed code shown.
-4. In `index.html`, find the `contact-form-wrap` section and replace
-   `https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_EMBED_URL/viewform?embedded=true`
-   with that URL.
-5. Form responses land in a Google Sheet (Responses tab → the sheet icon) —
-   turn on email notifications for new responses via the Sheet's
-   Tools → Notification rules, or the Forms "Get email notifications for new responses" toggle.
+The form is live: "Book a Free Trial Lesson — Chen Wang", collecting Email,
+Name, Level (dropdown), Age (dropdown), and Message. It's embedded directly
+in `index.html`'s `contact-form-wrap` section.
+
+- **Edit questions**: open the form at
+  `https://docs.google.com/forms/d/142U1ZRLf1AKBAz7YbhLlSYg1rAm0rPwUAaCLtz2Lodg/edit`
+  (requires being signed into the Google account that created it, or being
+  added as an editor — see below).
+- **View responses**: the form's Responses tab, or link it to a Google Sheet
+  via "Link to Sheets" there.
+- **Email notifications**: already turned on ("Get email notifications for
+  new responses"), but they go to the Google account that owns the form —
+  currently the account used to build this site, not Chenwangsax@gmail.com.
+  To fix that, either:
+  1. Click the "add person" icon in the form editor and add
+     Chenwangsax@gmail.com as an Editor (notifications still go to the
+     owner, but Chen could self-manage the form), or
+  2. Transfer ownership entirely (Editor access → change role to Owner) so
+     notifications go directly to Chenwangsax@gmail.com.
+- **To rebuild from scratch**: create a new form at
+  [forms.google.com](https://forms.google.com), then Publish it →
+  overflow menu (⋮) → **Embed HTML** → copy the `src="..."` URL → paste it
+  into the `contact-form-wrap` iframe's `src` in `index.html`.
 
 ## Updating content
 

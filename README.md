@@ -94,9 +94,12 @@ in `index.html`'s `contact-form-wrap` section.
   a SoundCloud iframe. To add/replace a track, swap the iframe's `url=`
   parameter for the new track's public share URL, URL-encoded (e.g.
   `https%3A//soundcloud.com/artist/track-name`).
-- **Photos** — `assets/photos/hero.jpg` (hero background) and
-  `assets/photos/about.jpg` (About section) were pulled from the old site.
-  Replace either file (same filename) to swap photos.
+- **Photos** — `assets/photos/hero.jpg` is the hero background (single
+  image). The About section shows a 2×2 grid from `assets/photos/about-1.jpg`
+  through `about-4.jpg` (top-left to bottom-right). Replace any file
+  (same filename) to swap a photo; each About tile is square
+  (`object-fit: cover`), so use a roughly square crop for the least
+  cropping surprise.
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
 - **Studio Policy** — the homepage `#policy` section holds a short bilingual
   summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`

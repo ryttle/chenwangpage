@@ -21,8 +21,7 @@ then visit `http://localhost:8000`.
 
 1. **Contact form** — still points at a placeholder Google Form embed URL (see below).
 2. **Location** — the old site never listed an explicit city/address. The
-   Contact section currently shows only Email and Instagram; add a location
-   line if wanted.
+   Contact section currently shows only Email; add a location line if wanted.
 3. **YouTube videos** — there's no dedicated video section on the site right
    now (the old site had none either). If Chen wants to showcase performance
    videos later, a new section can be added — check git history (before the
@@ -76,7 +75,7 @@ by side in the HTML, toggled with a "中文" / "EN" button in the nav.
 - **Photos** — `assets/photos/hero.jpg` (hero background) and
   `assets/photos/about.jpg` (About section) were pulled from the old site.
   Replace either file (same filename) to swap photos.
-- **Social links** — footer links to the real SoundCloud and Instagram profiles.
+- **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
 
 ## Deploying to GitHub Pages
 

@@ -376,6 +376,30 @@ a:hover { text-decoration: underline; }
   padding: 5px 0;
 }
 
+.about-copy h3 {
+  font-size: 1.3rem;
+  color: var(--brass-light);
+  margin: 32px 0 12px;
+}
+
+.judging-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.judging-list li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  padding: 5px 0;
+}
+
+.judging-note {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-style: italic;
+  margin: 12px 0 0;
+}
+
 /* Recent Arrangement */
 .arrangement-grid {
   display: grid;

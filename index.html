@@ -30,24 +30,47 @@
 <main>
 
   <section id="top" class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <p class="eyebrow">Saxophonist &amp; Educator</p>
-      <h1>Alex Rivers</h1>
-      <p class="hero-sub">Jazz, soul &amp; contemporary sax — twenty years on stages and recordings around the world.</p>
-      <div class="hero-cta">
+      <p class="eyebrow hero-anim" style="--d:0">Saxophonist &amp; Educator</p>
+      <h1 class="hero-anim" style="--d:1">Alex Rivers</h1>
+      <p class="hero-sub hero-anim" style="--d:2">Jazz, soul &amp; contemporary sax — twenty years on stages and recordings around the world.</p>
+      <div class="hero-cta hero-anim" style="--d:3">
         <a href="#performances" class="btn btn-primary">Watch Performances</a>
         <a href="#contact" class="btn btn-outline">Book a Lesson</a>
       </div>
     </div>
   </section>
 
+  <section class="stats section">
+    <div class="container stats-grid">
+      <!-- Placeholder figures — swap for the client's real numbers -->
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="20" data-suffix="+">0</span>
+        <span class="stat-label">Years Performing</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="500" data-suffix="+">0</span>
+        <span class="stat-label">Live Shows</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="100" data-suffix="+">0</span>
+        <span class="stat-label">Students Taught</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="15" data-suffix="">0</span>
+        <span class="stat-label">Countries Toured</span>
+      </div>
+    </div>
+  </section>
+
   <section id="about" class="section">
     <div class="container about-grid">
-      <div class="about-photo" aria-hidden="true">
+      <div class="about-photo reveal" aria-hidden="true">
         <!-- Replace with a real photo: <img src="assets/photo.jpg" alt="Alex Rivers playing saxophone"> -->
         <div class="photo-placeholder">Photo</div>
       </div>
-      <div class="about-copy">
+      <div class="about-copy reveal">
         <h2>About</h2>
         <p>
           <!-- Placeholder bio — replace with the client's real background -->
@@ -67,11 +90,11 @@
 
   <section id="performances" class="section section-alt">
     <div class="container">
-      <h2>Performances</h2>
-      <p class="section-sub">A selection of live performances and highlights.</p>
+      <h2 class="reveal">Performances</h2>
+      <p class="section-sub reveal">A selection of live performances and highlights.</p>
 
       <div class="video-grid">
-        <div class="video-card">
+        <div class="video-card reveal">
           <div class="video-embed">
             <!-- Replace YOUR_YOUTUBE_VIDEO_ID with the real YouTube video ID -->
             <iframe
@@ -86,7 +109,7 @@
           <p class="video-caption">Live at [Venue Name] — [Year]</p>
         </div>
 
-        <div class="video-card">
+        <div class="video-card reveal">
           <div class="video-embed">
             <iframe
               src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID"
@@ -100,7 +123,7 @@
           <p class="video-caption">[Song Title] — [Event Name]</p>
         </div>
 
-        <div class="video-card">
+        <div class="video-card reveal">
           <div class="video-embed">
             <iframe
               src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID"
@@ -119,11 +142,11 @@
 
   <section id="recordings" class="section">
     <div class="container">
-      <h2>Recordings</h2>
-      <p class="section-sub">Studio recordings and sessions, available on SoundCloud.</p>
+      <h2 class="reveal">Recordings</h2>
+      <p class="section-sub reveal">Studio recordings and sessions, available on SoundCloud.</p>
 
       <div class="audio-stack">
-        <div class="audio-card">
+        <div class="audio-card reveal">
           <!-- Replace the src URL below: swap in the real SoundCloud track/playlist share URL, url-encoded -->
           <iframe
             width="100%"
@@ -136,7 +159,7 @@
           </iframe>
         </div>
 
-        <div class="audio-card">
+        <div class="audio-card reveal">
           <iframe
             width="100%"
             height="166"
@@ -148,7 +171,7 @@
           </iframe>
         </div>
 
-        <div class="audio-card">
+        <div class="audio-card reveal">
           <iframe
             width="100%"
             height="166"
@@ -165,7 +188,7 @@
 
   <section id="contact" class="section section-alt">
     <div class="container contact-grid">
-      <div class="contact-copy">
+      <div class="contact-copy reveal">
         <h2>Get in Touch</h2>
         <p>
           Interested in booking a performance or starting saxophone lessons? Send a message using the
@@ -177,7 +200,7 @@
         </ul>
       </div>
 
-      <div class="contact-form-wrap">
+      <div class="contact-form-wrap reveal">
         <!--
           Replace this iframe's src with your client's real Google Form embed link:
           1. Create the form at forms.google.com
@@ -211,6 +234,8 @@
     </div>
   </div>
 </footer>
+
+<a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
 <script src="assets/script.js"></script>
 </body>

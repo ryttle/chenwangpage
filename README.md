@@ -95,11 +95,14 @@ in `index.html`'s `contact-form-wrap` section.
   parameter for the new track's public share URL, URL-encoded (e.g.
   `https%3A//soundcloud.com/artist/track-name`).
 - **Photos** — `assets/photos/hero.jpg` is the hero background (single
-  image). The About section shows a 2×2 grid from `assets/photos/about-1.jpg`
-  through `about-4.jpg` (top-left to bottom-right). Replace any file
-  (same filename) to swap a photo; each About tile is square
-  (`object-fit: cover`), so use a roughly square crop for the least
-  cropping surprise.
+  image). The About section shows a single-column stack of
+  `assets/photos/about-1.jpg` through `about-4.jpg` (top to bottom), each
+  shown at its natural, uncropped aspect ratio (`width: 100%; height: auto;`
+  — no `object-fit` cropping). Replace any file (same filename) to swap a
+  photo. These 4 are the client's original, unedited files (not resized or
+  compressed) — about-1.jpg alone is ~5.7MB, ~8.4MB total for the set. If
+  page load time becomes a concern, resizing/compressing them (same crop,
+  same orientation) is a reasonable follow-up.
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
 - **Studio Policy** — the homepage `#policy` section holds a short bilingual
   summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`

@@ -481,6 +481,26 @@ a:hover { text-decoration: underline; }
 }
 .google-form-embed { display: block; }
 
+/* Light theme for the Contact section, so the white Google Form embed
+   doesn't sit awkwardly on the dark background. Overriding the shared
+   design tokens locally lets every existing rule (headings, links, muted
+   text, borders) adapt automatically. */
+.section-light {
+  background: #ffffff;
+  --text: #1f2223;
+  --text-muted: #5b5650;
+  --brass: #8a6a22;
+  --brass-light: #6f5419;
+  --border: #e5e1da;
+}
+.section-light .contact-copy p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.section-light .contact-form-wrap {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--border);

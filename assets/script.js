@@ -3,7 +3,9 @@ document.querySelectorAll('.year-el').forEach((el) => {
 });
 
 // Language toggle
-const TITLES = {
+// Pages can override the toggled <title> by setting window.PAGE_TITLES
+// (see policy.html) before this script runs; otherwise the site default applies.
+const TITLES = window.PAGE_TITLES || {
   en: 'Chen Wang Sax Studio',
   zh: '王晨萨克斯工作室',
 };

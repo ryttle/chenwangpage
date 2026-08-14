@@ -20,22 +20,19 @@ then visit `http://localhost:8000`.
 
 ## Still pending
 
-1. **Studio Policy content** — the `#policy` section (both `lang-en` and
-   `lang-zh` paragraphs) currently holds placeholder text (lesson
-   cancellation/makeup, billing, materials). Replace it with the studio's
-   real policy once provided.
-2. **Location** — the old site never listed an explicit city/address. The
+1. **Location** — the old site never listed an explicit city/address. The
    Contact section currently shows only Email; add a location line if wanted.
-3. **YouTube videos** — there's no dedicated video section on the site right
+2. **YouTube videos** — there's no dedicated video section on the site right
    now (the old site had none either). If Chen wants to showcase performance
    videos later, a new section can be added — check git history (before the
    "Recent Arrangement" migration commit) for the original `video-grid`
    markup/CSS pattern to reuse.
-4. **Chinese translation review** — the Chinese content was AI-translated,
-   not by a professional/native translator. It should read naturally, but a
-   native-speaker pass (especially on the musical/academic terminology) is
-   worth doing before this is considered final.
-5. **Google Form ownership** — the form is still owned/editable only by the
+3. **Chinese translation review** — the Chinese content was AI-translated,
+   not by a professional/native translator (this includes the full Studio
+   Policy on `policy.html`, which covers real legal/financial terms — a
+   native-speaker and/or legal review is worth prioritizing there
+   specifically before relying on it).
+4. **Google Form ownership** — the form is still owned/editable only by the
    Google account used to build this site (not Chenwangsax@gmail.com). Email
    notifications for new responses now go to Chenwangsax@gmail.com (via an
    Apps Script trigger, see below), but if Chen ever needs to edit the form's
@@ -101,7 +98,14 @@ in `index.html`'s `contact-form-wrap` section.
   `assets/photos/about.jpg` (About section) were pulled from the old site.
   Replace either file (same filename) to swap photos.
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
-- **Studio Policy** — edit the `#policy` section's `lang-en`/`lang-zh` paragraphs directly in `index.html`.
+- **Studio Policy** — the homepage `#policy` section holds a short bilingual
+  summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`
+  paragraphs directly in `index.html`. The full 8-section policy (trial
+  lesson/enrollment, payment, cancellations, refunds, holidays,
+  parent-teacher communication, minor-student supervision, written notices)
+  lives on its own page, `policy.html`, sourced from the client's Google Doc
+  and translated into Chinese. Edit the matching `lang-en`/`lang-zh` blocks
+  there to update it.
 - **Studio/brand name** — "Chen Wang Sax Studio" / "王晨萨克斯工作室" appears in
   the nav logo, hero heading, `<title>`, and footer. Chen's personal name
   ("Chen Wang" / "王晨") is kept in the About bio and elsewhere it refers to
@@ -123,7 +127,8 @@ minute or two.
 ## File structure
 
 ```
-index.html            Page content and structure
+index.html            Homepage content and structure
+policy.html            Full Studio Policy (linked from the homepage's Studio Policy section)
 assets/style.css       All styling
 assets/script.js        Scroll reveal, sticky header, mobile nav, back-to-top
 assets/photos/          Hero and About photos

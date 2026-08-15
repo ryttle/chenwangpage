@@ -96,11 +96,13 @@ in `index.html`'s `contact-form-wrap` section.
   `https%3A//soundcloud.com/artist/track-name`).
 - **Photos** — `assets/photos/hero.jpg` is the hero background (single
   image). The About section shows a single-column stack of
-  `assets/photos/about-1.jpg` through `about-4.jpg` (top to bottom), each
+  `assets/photos/about-1.jpg` through `about-3.jpg` (top to bottom), each
   shown at its natural, uncropped aspect ratio (`width: 100%; height: auto;`
   — no `object-fit` cropping). Replace any file (same filename) to swap a
-  photo. These 4 are the client's original, unedited files (not resized or
-  compressed) — about-1.jpg alone is ~5.7MB, ~8.4MB total for the set. If
+  photo, or add/remove `<img>` tags in `.about-photo-grid` to change the
+  count — the flex column layout adapts automatically. These are the
+  client's original files (about-1.jpg was converted from HEIC to JPG for
+  browser compatibility; otherwise unedited) — ~4.5MB total for the set. If
   page load time becomes a concern, resizing/compressing them (same crop,
   same orientation) is a reasonable follow-up.
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).

@@ -132,6 +132,34 @@ git push
 The live site updates at `https://ryttle.github.io/chenwangpage/` within a
 minute or two.
 
+## SEO / AI answer optimization
+
+- **Meta tags** — `index.html` and `policy.html` each have a unique `<title>`,
+  meta description, canonical URL (pointed at `https://chenwangsaxstudio.com/`),
+  and Open Graph / Twitter Card tags (using `hero.jpg` as the share image).
+- **Structured data** — `index.html` has a JSON-LD `@graph` in the `<head>`
+  with three entities: a `Person` (Chen Wang — bio, awards, alma maters), a
+  `LocalBusiness`/`EducationalOrganization` (the studio — Seattle, WA;
+  update the `address`/`areaServed` fields if the service area changes), and
+  a `FAQPage` mirroring the on-page FAQ section word-for-word (Google
+  requires this match — if you edit the FAQ section, edit the JSON-LD too).
+- **FAQ section** (`#faq`) — bilingual `<details>` accordion answering the
+  most likely search/AI-answer queries (trial lesson, location, pricing,
+  cancellation policy, ages/levels, qualifications, judging). This is the
+  highest-leverage section for AI answer engines (ChatGPT, Perplexity,
+  Google AI Overviews) that lift direct Q&A content — keep answers factual
+  and in sync with the Studio Policy section if pricing/policy changes.
+- **`robots.txt`** — explicitly allows major AI crawlers (GPTBot, ClaudeBot,
+  PerplexityBot, Google-Extended, etc.) in addition to standard search bots,
+  since the goal is to be discoverable by AI answer engines, not just Google.
+- **`sitemap.xml`** — lists `index.html` and `policy.html`; referenced from
+  `robots.txt`. Add new pages here if any are created.
+- **Favicon** — `assets/favicon.svg`, a simple "CW" monogram in the site's
+  brass color on a dark background.
+- If the studio's location, hours, phone, or pricing change, update: the
+  Contact section, Studio Policy section/page, the FAQ section, and the
+  `LocalBusiness` JSON-LD block — all four can drift out of sync otherwise.
+
 ## File structure
 
 ```
@@ -140,4 +168,7 @@ policy.html            Full Studio Policy (linked from the homepage's Studio Pol
 assets/style.css       All styling
 assets/script.js        Scroll reveal, sticky header, mobile nav, back-to-top
 assets/photos/          Hero and About photos
+assets/favicon.svg      Browser tab icon
+robots.txt              Crawler rules (search + AI bots) + sitemap reference
+sitemap.xml             URL list for search engines
 ```

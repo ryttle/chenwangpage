@@ -415,6 +415,38 @@ a:hover { text-decoration: underline; }
 }
 .policy-copy .btn { margin-top: 8px; }
 
+/* FAQ */
+.faq-copy { max-width: 720px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.faq-item:first-of-type { border-top: 1px solid var(--border); }
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.05rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  color: var(--brass);
+  transition: transform 0.2s ease;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  color: var(--text-muted);
+  margin: 14px 0 0;
+}
+.faq-item p a { color: var(--brass-light); }
+
 /* Full policy page */
 .policy-page { padding-top: 160px; }
 .policy-article {

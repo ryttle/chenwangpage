@@ -132,6 +132,12 @@ git push
 The live site updates at `https://ryttle.github.io/chenwangpage/` within a
 minute or two.
 
+## Analytics
+
+Google Analytics (GA4) is installed on both pages via the standard `gtag.js`
+snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
+[analytics.google.com](https://analytics.google.com/).
+
 ## SEO / AI answer optimization
 
 - **Meta tags** — `index.html` and `policy.html` each have a unique `<title>`,

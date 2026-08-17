@@ -40,6 +40,12 @@ applyLang(document.documentElement.dataset.lang || 'en');
 
 langToggle.addEventListener('click', () => {
   const next = document.documentElement.dataset.lang === 'en' ? 'zh' : 'en';
+  const altUrl = window.ALT_LANG_URL && window.ALT_LANG_URL[next];
+  if (altUrl) {
+    localStorage.setItem('lang', next);
+    window.location.href = altUrl + window.location.hash;
+    return;
+  }
   applyLang(next);
 });
 

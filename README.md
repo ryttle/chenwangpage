@@ -43,33 +43,50 @@ then visit `http://localhost:8000`.
 ## Bilingual (English / 中文)
 
 Every piece of visible text has an English and a Chinese version living side
-by side in the HTML, toggled with a "中文" / "EN" button in the nav.
+by side in the HTML. There are two real URL trees — English at `/` and
+`/policy.html`, Chinese at `/zh/` and `/zh/policy.html` — and the "中文" / "EN"
+button in the nav **navigates** between them (not an in-place content flip).
 
 - English text is wrapped in `<span class="lang-en">` (or a whole `<p class="lang-en">`
-  for longer passages); the Chinese counterpart uses `class="lang-zh" hidden`.
-  `assets/script.js` flips the `hidden` attribute on whichever set doesn't
-  match the active language — this works for any element type, so it's used
-  uniformly for spans, paragraphs, and list items.
+  for longer passages); the Chinese counterpart uses `class="lang-zh" hidden`
+  on the English pages, and vice versa on the `/zh/` pages (Chinese visible,
+  English hidden). `assets/script.js`'s `applyLang()` sets the `hidden`
+  attribute on whichever set doesn't match the active language on initial
+  load — this works for any element type, so it's used uniformly for spans,
+  paragraphs, and list items.
+- **The toggle button navigates, it doesn't just flip text.** Each page
+  declares `window.ALT_LANG_URL` before `script.js` loads (e.g. `{ zh: 'zh/' }`
+  on `index.html`, `{ en: '../' }` on `zh/index.html`) — the relative URL of
+  its counterpart in the other language. Clicking the toggle stores the
+  target language in `localStorage` and navigates to that URL, preserving
+  any `#section` hash so you land on the same section you were viewing. This
+  was a deliberate change from an earlier in-place-flip version: with two
+  real URLs now existing (for SEO — see below), users expect the button to
+  actually take them to the Chinese page, not just re-render the same URL.
+  If `document.documentElement.dataset.lang` already matches a page's native
+  language when the button targets that same language (e.g. a `zh`-preference
+  visitor landing directly on the English URL via a shared link), there's no
+  `ALT_LANG_URL` entry for it and `applyLang()` just flips in place instead
+  of navigating to itself.
 - The active language is stored in `localStorage` (`lang` key) and restored
-  on future visits; first-time visitors get English unless their browser is
-  set to Chinese.
+  on future visits; first-time visitors to `/` get English unless their
+  browser is set to Chinese (`/zh/` always defaults to Chinese for first-time
+  visitors, regardless of browser language, since arriving at that URL is
+  itself a strong language signal).
 - To edit either language's copy, find the matching `lang-en`/`lang-zh` pair
-  in `index.html` and edit the text directly — just keep both versions in
-  sync when one changes.
+  in `index.html` (or `zh/index.html`) and edit the text directly — just
+  keep both versions in sync when one changes.
 - **Dedicated Chinese URLs** (`/zh/index.html`, `/zh/policy.html`) exist
-  alongside the toggle, purely for SEO/AI-crawler discoverability. Most
-  crawlers — including AI bots like GPTBot and ClaudeBot — don't execute
-  JavaScript, so on the root pages they only ever see the raw HTML, where
-  Chinese spans carry a literal `hidden` attribute; without a dedicated URL,
-  Chinese content would be invisible to those crawlers. The `/zh/` pages are
-  the same markup with the `hidden` attribute flipped onto the English spans
-  instead (Chinese visible by default, English hidden), an `<html lang="zh">`
-  default, Chinese meta tags and JSON-LD, and reciprocal `hreflang` tags
-  (`en`/`zh`/`x-default`) linking the two versions in both directions. The
-  in-page toggle still works normally on `/zh/` pages (flips in place, same
-  `localStorage` preference shared across the whole site) — the dedicated
-  URL only changes what search engines and non-JS crawlers see by default,
-  not the human-facing UX.
+  primarily for SEO/AI-crawler discoverability, and now also serve as the
+  toggle's real navigation target. Most crawlers — including AI bots like
+  GPTBot and ClaudeBot — don't execute JavaScript, so on the English pages
+  they only ever see the raw HTML, where Chinese spans carry a literal
+  `hidden` attribute; without a dedicated URL, Chinese content would be
+  invisible to those crawlers. The `/zh/` pages are the same markup with the
+  `hidden` attribute flipped onto the English spans instead, an
+  `<html lang="zh">` default, Chinese meta tags and JSON-LD, and reciprocal
+  `hreflang` tags (`en`/`zh`/`x-default`) linking the two versions in both
+  directions.
   - **Regenerating `/zh/` after editing content**: if you change the
     English/Chinese copy in `index.html` or `policy.html`, the `/zh/` copies
     need the same edit applied (mirrored, not literally copied — see the

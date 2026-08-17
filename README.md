@@ -20,8 +20,9 @@ then visit `http://localhost:8000`.
 
 ## Still pending
 
-1. **Location** — the old site never listed an explicit city/address. The
-   Contact section currently shows only Email; add a location line if wanted.
+1. **Location in Contact section** — the studio's location (Bothell, WA) is
+   documented in the FAQ and structured data, but the Contact section itself
+   still shows only Email; add a location line there too if wanted.
 2. **YouTube videos** — there's no dedicated video section on the site right
    now (the old site had none either). If Chen wants to showcase performance
    videos later, a new section can be added — check git history (before the
@@ -102,9 +103,11 @@ in `index.html`'s `contact-form-wrap` section.
   photo, or add/remove `<img>` tags in `.about-photo-grid` to change the
   count — the flex column layout adapts automatically. These are the
   client's original files (about-1.jpg was converted from HEIC to JPG for
-  browser compatibility; otherwise unedited) — ~4.5MB total for the set. If
-  page load time becomes a concern, resizing/compressing them (same crop,
-  same orientation) is a reasonable follow-up.
+  browser compatibility; otherwise unedited). Originally ~4.5MB total; later
+  resized to a 1400px long edge and recompressed (same crop, same
+  orientation, EXIF orientation tag preserved) for page speed — now ~1MB
+  total for the set (`width`/`height` attributes on the `<img>` tags were
+  updated to match; keep them in sync if you swap in different files).
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
 - **Studio Policy** — the homepage `#policy` section holds a short bilingual
   summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`
@@ -144,9 +147,10 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
   meta description, canonical URL (pointed at `https://chenwangsaxstudio.com/`),
   and Open Graph / Twitter Card tags (using `hero.jpg` as the share image).
 - **Structured data** — `index.html` has a JSON-LD `@graph` in the `<head>`
-  with three entities: a `Person` (Chen Wang — bio, awards, alma maters), a
-  `LocalBusiness`/`EducationalOrganization` (the studio — Seattle, WA;
-  update the `address`/`areaServed` fields if the service area changes), and
+  with four entities: a `Person` (Chen Wang — bio, awards, alma maters), a
+  `LocalBusiness`/`EducationalOrganization` (the studio — Bothell, WA;
+  update the `address`/`areaServed` fields if the service area changes), a
+  `Course` (private lessons — pricing, instructor, in-person location), and
   a `FAQPage` mirroring the on-page FAQ section word-for-word (Google
   requires this match — if you edit the FAQ section, edit the JSON-LD too).
 - **FAQ section** (`#faq`) — bilingual `<details>` accordion answering the
@@ -162,9 +166,20 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
   `robots.txt`. Add new pages here if any are created.
 - **Favicon** — `assets/favicon.svg`, a simple "CW" monogram in the site's
   brass color on a dark background.
+- **`llms.txt`** — a curated markdown summary of the studio and Chen's bio
+  for AI models/crawlers to consume directly, without parsing full HTML.
+  Same idea as `robots.txt` but content-focused; keep it in sync with the
+  FAQ/bio if either changes.
+- **Image performance** — About/hero photos have explicit `width`/`height`
+  attributes (prevents layout shift) and the hero image uses
+  `fetchpriority="high"`; About photos use `loading="lazy"`. The About
+  photos were also resized/recompressed (same crop, same orientation, EXIF
+  orientation tag preserved) to cut load time — see "Photos" below for the
+  size history.
 - If the studio's location, hours, phone, or pricing change, update: the
   Contact section, Studio Policy section/page, the FAQ section, and the
-  `LocalBusiness` JSON-LD block — all four can drift out of sync otherwise.
+  `LocalBusiness`/`Course` JSON-LD blocks — these can drift out of sync
+  otherwise.
 
 ## File structure
 
@@ -177,4 +192,5 @@ assets/photos/          Hero and About photos
 assets/favicon.svg      Browser tab icon
 robots.txt              Crawler rules (search + AI bots) + sitemap reference
 sitemap.xml             URL list for search engines
+llms.txt                Curated summary of the site for AI models/crawlers
 ```

@@ -77,6 +77,34 @@
       "sameAs": ["https://soundcloud.com/chen-wang-669412156"]
     },
     {
+      "@type": "Course",
+      "@id": "https://chenwangsaxstudio.com/#course",
+      "name": "Private Saxophone Lessons",
+      "description": "One-on-one saxophone instruction for students of all ages and skill levels, from complete beginners to advanced players preparing for auditions and competitions. Includes a free 30-minute trial lesson.",
+      "provider": { "@id": "https://chenwangsaxstudio.com/#studio" },
+      "instructor": { "@id": "https://chenwangsaxstudio.com/#chenwang" },
+      "coursePrerequisites": "None — open to all ages and skill levels",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "In Person",
+        "location": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bothell",
+            "addressRegion": "WA",
+            "addressCountry": "US"
+          }
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "100",
+        "priceCurrency": "USD",
+        "description": "45-minute private lesson, billed in prepaid four-lesson cycles"
+      }
+    },
+    {
       "@type": "FAQPage",
       "@id": "https://chenwangsaxstudio.com/#faq",
       "mainEntity": [
@@ -183,7 +211,7 @@
 
   <section id="top" class="hero hero-photo">
     <div class="hero-glow" aria-hidden="true"></div>
-    <img class="hero-bg" src="assets/photos/hero.jpg" alt="" aria-hidden="true" loading="eager">
+    <img class="hero-bg" src="assets/photos/hero.jpg" alt="" aria-hidden="true" loading="eager" fetchpriority="high" width="1600" height="2400">
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container hero-inner">
       <p class="eyebrow hero-anim" style="--d:0">
@@ -214,9 +242,9 @@
   <section id="about" class="section">
     <div class="container about-grid">
       <div class="about-photo-grid reveal">
-        <img src="assets/photos/about-1.jpg" alt="Chen Wang performing saxophone on stage with a choir">
-        <img src="assets/photos/about-2.jpg" alt="Chen Wang performing saxophone">
-        <img src="assets/photos/about-3.jpg" alt="Chen Wang performing with a wind ensemble">
+        <img src="assets/photos/about-1.jpg" alt="Chen Wang performing saxophone on stage with a choir" width="1050" height="1400" loading="lazy">
+        <img src="assets/photos/about-2.jpg" alt="Chen Wang performing saxophone" width="1080" height="1440" loading="lazy">
+        <img src="assets/photos/about-3.jpg" alt="Chen Wang performing with a wind ensemble" width="1400" height="1050" loading="lazy">
       </div>
       <div class="about-copy reveal">
         <h2><span class="lang-en">About</span><span class="lang-zh" hidden>关于</span></h2>

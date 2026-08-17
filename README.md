@@ -56,6 +56,26 @@ by side in the HTML, toggled with a "中文" / "EN" button in the nav.
 - To edit either language's copy, find the matching `lang-en`/`lang-zh` pair
   in `index.html` and edit the text directly — just keep both versions in
   sync when one changes.
+- **Dedicated Chinese URLs** (`/zh/index.html`, `/zh/policy.html`) exist
+  alongside the toggle, purely for SEO/AI-crawler discoverability. Most
+  crawlers — including AI bots like GPTBot and ClaudeBot — don't execute
+  JavaScript, so on the root pages they only ever see the raw HTML, where
+  Chinese spans carry a literal `hidden` attribute; without a dedicated URL,
+  Chinese content would be invisible to those crawlers. The `/zh/` pages are
+  the same markup with the `hidden` attribute flipped onto the English spans
+  instead (Chinese visible by default, English hidden), an `<html lang="zh">`
+  default, Chinese meta tags and JSON-LD, and reciprocal `hreflang` tags
+  (`en`/`zh`/`x-default`) linking the two versions in both directions. The
+  in-page toggle still works normally on `/zh/` pages (flips in place, same
+  `localStorage` preference shared across the whole site) — the dedicated
+  URL only changes what search engines and non-JS crawlers see by default,
+  not the human-facing UX.
+  - **Regenerating `/zh/` after editing content**: if you change the
+    English/Chinese copy in `index.html` or `policy.html`, the `/zh/` copies
+    need the same edit applied (mirrored, not literally copied — see the
+    hidden-attribute swap above) plus their translated `<head>` (title, meta
+    description, OG/Twitter tags, JSON-LD) kept in sync by hand — there's no
+    build step that generates one from the other automatically.
 - Client's Chinese name is 王晨 (used throughout the `lang-zh` content and
   page title); "Chen Wang" is used in English.
 
@@ -162,8 +182,10 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
 - **`robots.txt`** — explicitly allows major AI crawlers (GPTBot, ClaudeBot,
   PerplexityBot, Google-Extended, etc.) in addition to standard search bots,
   since the goal is to be discoverable by AI answer engines, not just Google.
-- **`sitemap.xml`** — lists `index.html` and `policy.html`; referenced from
-  `robots.txt`. Add new pages here if any are created.
+- **`sitemap.xml`** — lists all four pages (`index.html`, `policy.html`,
+  `zh/index.html`, `zh/policy.html`) with `xhtml:link` hreflang annotations
+  on each; referenced from `robots.txt`. Add new pages here if any are
+  created.
 - **Favicon** — `assets/favicon.svg`, a simple "CW" monogram in the site's
   brass color on a dark background.
 - **`llms.txt`** — a curated markdown summary of the studio and Chen's bio
@@ -186,6 +208,8 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
 ```
 index.html            Homepage content and structure
 policy.html            Full Studio Policy (linked from the homepage's Studio Policy section)
+zh/index.html           Chinese-default mirror of index.html (SEO/AI-crawler entry point)
+zh/policy.html          Chinese-default mirror of policy.html
 assets/style.css       All styling
 assets/script.js        Scroll reveal, sticky header, mobile nav, back-to-top
 assets/photos/          Hero and About photos

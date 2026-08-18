@@ -87,6 +87,11 @@ a:hover { text-decoration: underline; }
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 700;
@@ -94,10 +99,17 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.5px;
 }
 .logo:hover { text-decoration: none; color: var(--brass-light); }
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
 
 .site-nav {
   display: flex;
-  gap: 28px;
+  gap: 20px;
 }
 
 .site-nav a {
@@ -106,6 +118,7 @@ a:hover { text-decoration: underline; }
   font-size: 0.95rem;
   font-weight: 500;
   padding-bottom: 4px;
+  white-space: nowrap;
 }
 .site-nav a::after {
   content: '';
@@ -133,6 +146,8 @@ a:hover { text-decoration: underline; }
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 .lang-toggle:hover {

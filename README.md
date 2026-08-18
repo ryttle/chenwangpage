@@ -224,8 +224,18 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
   `zh/index.html`, `zh/policy.html`) with `xhtml:link` hreflang annotations
   on each; referenced from `robots.txt`. Add new pages here if any are
   created.
-- **Favicon** — `assets/favicon.svg`, a simple "CW" monogram in the site's
-  brass color on a dark background.
+- **Favicon / logo mark** — `assets/logo-mark.png` (256×256), cropped from
+  the client's logo artwork (`~/Desktop/icon logo chen wang.jpeg` — the
+  circular CW/saxophone icon only, not the full lockup with "CHEN WANG SAX
+  STUDIO" text below it, which doesn't fit a square icon or a horizontal nav
+  bar). Used as both the favicon/`apple-touch-icon` and inline in the nav
+  logo (`.logo-mark`, 28px, `border-radius: 50%` — the source has a cream
+  background, not transparency, so the border-radius makes it read as an
+  intentional circular badge rather than a mismatched square patch on the
+  dark header). Quantized to a 16-color palette to keep the file small
+  (~22KB) since it's essentially two-tone line art. To swap in a new logo,
+  re-crop from source and overwrite this file — same filename, so no other
+  changes needed unless the aspect ratio changes.
 - **`llms.txt`** — a curated markdown summary of the studio and Chen's bio
   for AI models/crawlers to consume directly, without parsing full HTML.
   Same idea as `robots.txt` but content-focused; keep it in sync with the
@@ -251,7 +261,7 @@ zh/policy.html          Chinese-default mirror of policy.html
 assets/style.css       All styling
 assets/script.js        Scroll reveal, sticky header, mobile nav, back-to-top
 assets/photos/          Hero and About photos
-assets/favicon.svg      Browser tab icon
+assets/logo-mark.png    Favicon + nav logo icon
 robots.txt              Crawler rules (search + AI bots) + sitemap reference
 sitemap.xml             URL list for search engines
 llms.txt                Curated summary of the site for AI models/crawlers

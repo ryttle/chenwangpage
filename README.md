@@ -75,10 +75,14 @@ button in the nav **navigates** between them (not an in-place content flip).
   `localStorage`, so simply visiting `/` would silently set `lang: 'en'`,
   which then made `/zh/` incorrectly default to English on a later visit in
   the same browser even though the visitor never chose English. First-time
-  (and passive-visit) behavior is: `/` shows English unless the browser is
-  set to Chinese, `/zh/` always shows Chinese regardless of browser
-  language — and neither overwrites a stored preference unless the toggle
-  is actually clicked.
+  (and passive-visit) behavior is: `/` always shows English and `/zh/`
+  always shows Chinese, regardless of the visitor's browser/OS language —
+  neither overwrites a stored preference unless the toggle is actually
+  clicked. (Earlier, `/` used `navigator.language` to guess and would show
+  Chinese by default for visitors with a Chinese browser locale even on the
+  English URL; that was dropped once `/zh/` existed as the real Chinese
+  entry point — each URL's language is now unambiguous by design, so
+  guessing is no longer useful and only caused confusion.)
 - To edit either language's copy, find the matching `lang-en`/`lang-zh` pair
   in `index.html` (or `zh/index.html`) and edit the text directly — just
   keep both versions in sync when one changes.

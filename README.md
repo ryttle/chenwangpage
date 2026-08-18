@@ -68,11 +68,17 @@ button in the nav **navigates** between them (not an in-place content flip).
   visitor landing directly on the English URL via a shared link), there's no
   `ALT_LANG_URL` entry for it and `applyLang()` just flips in place instead
   of navigating to itself.
-- The active language is stored in `localStorage` (`lang` key) and restored
-  on future visits; first-time visitors to `/` get English unless their
-  browser is set to Chinese (`/zh/` always defaults to Chinese for first-time
-  visitors, regardless of browser language, since arriving at that URL is
-  itself a strong language signal).
+- The active language is stored in `localStorage` (`lang` key) **only when
+  the visitor explicitly clicks the toggle** — `applyLang()` takes a second
+  `persist` argument, and the initial page-load call passes `false`. This
+  matters: earlier, every page load (not just toggle clicks) wrote to
+  `localStorage`, so simply visiting `/` would silently set `lang: 'en'`,
+  which then made `/zh/` incorrectly default to English on a later visit in
+  the same browser even though the visitor never chose English. First-time
+  (and passive-visit) behavior is: `/` shows English unless the browser is
+  set to Chinese, `/zh/` always shows Chinese regardless of browser
+  language — and neither overwrites a stored preference unless the toggle
+  is actually clicked.
 - To edit either language's copy, find the matching `lang-en`/`lang-zh` pair
   in `index.html` (or `zh/index.html`) and edit the text directly — just
   keep both versions in sync when one changes.
@@ -146,6 +152,17 @@ in `index.html`'s `contact-form-wrap` section.
   total for the set (`width`/`height` attributes on the `<img>` tags were
   updated to match; keep them in sync if you swap in different files).
 - **Social links** — footer links to the real SoundCloud profile (Instagram link was removed by request).
+- **Testimonials** (`#testimonials`, between FAQ and Contact) — real reviews
+  only, sourced from the Google Business Profile / Google Maps listing; never
+  invent or paraphrase a quote. Each testimonial is credited as "Google Maps
+  review", and the Chinese version notes it's a translation (in both the
+  visible copy and the JSON-LD `reviewBody`, since the original review is in
+  English). Adding a new one: append another `.testimonial-card` block (see
+  the existing one for structure) to both `index.html` and `zh/index.html`,
+  and add a matching entry to the `review` array in both files' JSON-LD —
+  update `aggregateRating.reviewCount` (and `ratingValue` if the average
+  changes) to match reality, since this must reflect the actual Business
+  Profile rating.
 - **Studio Policy** — the homepage `#policy` section holds a short bilingual
   summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`
   paragraphs directly in `index.html`. The full 8-section policy (trial

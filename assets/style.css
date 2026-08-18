@@ -17,7 +17,8 @@ html[data-lang="zh"] body { font-family: var(--font-body-zh); }
 html[data-lang="zh"] h1,
 html[data-lang="zh"] h2,
 html[data-lang="zh"] h3,
-html[data-lang="zh"] .logo {
+html[data-lang="zh"] .logo,
+html[data-lang="zh"] .testimonial-card blockquote p {
   font-family: var(--font-heading-zh);
 }
 
@@ -446,6 +447,33 @@ a:hover { text-decoration: underline; }
   margin: 14px 0 0;
 }
 .faq-item p a { color: var(--brass-light); }
+
+/* Testimonials */
+.testimonial-card {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial-stars {
+  color: var(--brass);
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+.testimonial-card blockquote {
+  margin: 0;
+}
+.testimonial-card blockquote p {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.testimonial-author {
+  margin-top: 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
 
 /* Full policy page */
 .policy-page { padding-top: 160px; }

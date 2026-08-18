@@ -21,7 +21,7 @@ const BACK_TO_TOP_LABELS = {
 const langToggle = document.getElementById('langToggle');
 const langToggleTarget = langToggle.querySelector('.lang-toggle-target');
 
-function applyLang(lang) {
+function applyLang(lang, persist) {
   document.documentElement.lang = lang;
   document.documentElement.dataset.lang = lang;
   document.title = TITLES[lang];
@@ -33,10 +33,16 @@ function applyLang(lang) {
   document.getElementById('navToggle').setAttribute('aria-label', NAV_TOGGLE_LABELS[lang]);
   document.getElementById('backToTop').setAttribute('aria-label', BACK_TO_TOP_LABELS[lang]);
 
-  localStorage.setItem('lang', lang);
+  // Only persist when the visitor explicitly chose a language (toggle click).
+  // A passive page load must never overwrite a stored preference — otherwise
+  // just visiting "/" silently biases what "/zh/" (or vice versa) shows by
+  // default on a later visit.
+  if (persist) {
+    localStorage.setItem('lang', lang);
+  }
 }
 
-applyLang(document.documentElement.dataset.lang || 'en');
+applyLang(document.documentElement.dataset.lang || 'en', false);
 
 langToggle.addEventListener('click', () => {
   const next = document.documentElement.dataset.lang === 'en' ? 'zh' : 'en';
@@ -46,7 +52,7 @@ langToggle.addEventListener('click', () => {
     window.location.href = altUrl + window.location.hash;
     return;
   }
-  applyLang(next);
+  applyLang(next, true);
 });
 
 const navToggle = document.getElementById('navToggle');

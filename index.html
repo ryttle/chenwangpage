@@ -77,7 +77,20 @@
       },
       "areaServed": "Bothell, WA and the greater Pacific Northwest",
       "founder": { "@id": "https://chenwangsaxstudio.com/#chenwang" },
-      "sameAs": ["https://soundcloud.com/chen-wang-669412156"]
+      "sameAs": ["https://soundcloud.com/chen-wang-669412156"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "Ryan Y." },
+          "reviewBody": "Took lessons with Chen and he's really great. I had no experience with saxophone at all when I started, and he was super patient with me. Didn't feel like he was rushed or frustrated even though I was definitely slow to pick things up lol. He explains things in a way that actually makes sense and is really encouraging. You can tell he knows what he's doing—been playing forever and it shows. He adjusts the lessons to where you're at, not just pushing through some generic curriculum. Would definitely recommend if you're thinking about learning sax."
+        }
+      ]
     },
     {
       "@type": "Course",
@@ -203,6 +216,7 @@ window.ALT_LANG_URL = { zh: 'zh/' };
       <a href="#recordings"><span class="lang-en">Recordings</span><span class="lang-zh" hidden>录音作品</span></a>
       <a href="#policy"><span class="lang-en">Studio Policy</span><span class="lang-zh" hidden>工作室政策</span></a>
       <a href="#faq"><span class="lang-en">FAQ</span><span class="lang-zh" hidden>常见问题</span></a>
+      <a href="#testimonials"><span class="lang-en">Testimonials</span><span class="lang-zh" hidden>学生评价</span></a>
       <a href="#contact"><span class="lang-en">Contact</span><span class="lang-zh" hidden>联系方式</span></a>
       <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
         <span class="lang-toggle-target">中文</span>
@@ -662,6 +676,23 @@ window.ALT_LANG_URL = { zh: 'zh/' };
         <p class="lang-en">Yes. Chen serves as a judge for the WMEA All-State auditions, Washington State Solo &amp; Ensemble, and the Seattle World Harmonies International Music Competition.</p>
         <p class="lang-zh" hidden>是的，王晨担任WMEA All-State评委、Washington State Solo &amp; Ensemble评委，以及Seattle World Harmonies International Music Competition评委。</p>
       </details>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section section-alt">
+    <div class="container">
+      <h2 class="reveal"><span class="lang-en">What Students Say</span><span class="lang-zh" hidden>学生评价</span></h2>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>
+          <p class="lang-en">"Took lessons with Chen and he's really great. I had no experience with saxophone at all when I started, and he was super patient with me. Didn't feel like he was rushed or frustrated even though I was definitely slow to pick things up lol. He explains things in a way that actually makes sense and is really encouraging. You can tell he knows what he's doing—been playing forever and it shows. He adjusts the lessons to where you're at, not just pushing through some generic curriculum. Would definitely recommend if you're thinking about learning sax."</p>
+          <p class="lang-zh" hidden>"跟王晨老师上课的体验非常好。我开始学的时候完全没有萨克斯管基础，他非常有耐心。即使我学得比较慢，也完全感觉不到他着急或不耐烦（笑）。他讲解方式很清楚，也很有条理，还特别鼓励人。能看出他真的很专业——吹了很多年，功底很扎实。他会根据你的实际水平调整课程内容，而不是死板地套用一套通用教材。如果你在考虑学萨克斯，真心推荐他。"</p>
+        </blockquote>
+        <p class="testimonial-author">
+          <span class="lang-en">— Ryan Y., Google Maps review</span>
+          <span class="lang-zh" hidden>— Ryan Y.，来自 Google 地图评论（中文为翻译版本）</span>
+        </p>
+      </div>
     </div>
   </section>
 

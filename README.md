@@ -134,6 +134,45 @@ in `index.html`'s `contact-form-wrap` section.
   overflow menu (⋮) → **Embed HTML** → copy the `src="..."` URL → paste it
   into the `contact-form-wrap` iframe's `src` in `index.html`.
 
+### Google Ads conversion tracking
+
+Google Ads flagged the account as missing a Google tag; the actual gap was
+that its "submit_lead_form" conversion action had no way to know a
+submission happened, since the form is a cross-origin iframe (this page
+can't observe what happens inside it directly). The fix has two halves:
+
+- **Site side** (`assets/script.js`, `threadClientIdIntoForm`) — reads the
+  visitor's GA4 client ID from the `_ga` cookie and appends it to the form
+  iframe's `src` as `entry.1605451217` (the form's "Referral Tracking ID"
+  field — a real, visible-but-unobtrusive short-answer question on the
+  form, not required, labeled to discourage editing).
+- **Apps Script side** (`Code.gs`, bound to the form — Extensions/⋮ menu →
+  Apps Script) — `onFormSubmit(e)` reads that field back out (and excludes
+  it from the notification email body), then calls `reportConversion()`,
+  which POSTs a `submit_lead_form` event to the GA4 Measurement Protocol
+  (`https://www.google-analytics.com/mp/collect`) using that client ID.
+  GA4's own ad-click attribution (linked to the visitor via auto-tagging)
+  then credits the right campaign automatically — no gclid handling needed.
+- The Measurement Protocol API secret lives in the Apps Script project's
+  **Script Properties** (`GA_MP_SECRET`, Project Settings → Script
+  Properties) — not in the source — created under Analytics Admin → the
+  `chenwangsaxstudio.com` property → Data streams → the web stream →
+  Measurement Protocol API secrets.
+- **One remaining manual step**: `submit_lead_form` needs to be marked as a
+  **Key event** in GA4 (Admin → search "Key events") before Ads will treat
+  it as a conversion — GA4 only offers that toggle once the event has
+  appeared at least once in Realtime/Events. Validated the exact payload as
+  correctly formed via Google's `/debug/mp/collect` endpoint and confirmed
+  `onFormSubmit` runs without error on a real test submission, but hadn't
+  seen `submit_lead_form` actually land in GA4's reports yet as of this
+  writing (worth checking after a real visitor converts, since the test
+  used a synthetic client ID with no prior browsing history, which GA4
+  sometimes doesn't surface promptly).
+- If the form's field structure ever changes, the `entry.1605451217` ID
+  will break — regenerate it via the form editor's ⋮ menu → **Pre-fill
+  form**, fill in the "Referral Tracking ID" field, click **Get link**,
+  then read the new `entry.NNNNNN` param off the generated URL.
+
 ## Updating content
 
 - **Bio / awards / education** — edit directly in the `about` and `awards`

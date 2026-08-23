@@ -2,6 +2,49 @@ document.querySelectorAll('.year-el').forEach((el) => {
   el.textContent = new Date().getFullYear();
 });
 
+// Google Ads conversion tracking: carry the visitor's GA4 client ID through
+// the embedded Google Form (as a hidden pre-filled field) so the Apps Script
+// bound to the form can report a "submit_lead_form" conversion via the GA4
+// Measurement Protocol on submit. The form is a cross-origin iframe, so this
+// page can't detect a submission directly — passing the client ID through is
+// the only bridge. GA4's own ad-click attribution (linked to Google Ads via
+// auto-tagging) then credits the right ad click automatically; no need to
+// handle gclid manually.
+const GA_CLIENT_ID_ENTRY_PARAM = 'entry.1605451217'; // "Referral Tracking ID" field on the form
+
+function getGaClientId() {
+  const match = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/);
+  return match ? match[1] : null;
+}
+
+(function threadClientIdIntoForm() {
+  const formFrame = document.querySelector('.google-form-embed');
+  if (!formFrame) return;
+
+  function applyClientId() {
+    if (formFrame.src.includes(GA_CLIENT_ID_ENTRY_PARAM)) return;
+    const clientId = getGaClientId();
+    if (!clientId) return;
+    const separator = formFrame.src.includes('?') ? '&' : '?';
+    formFrame.src += `${separator}${GA_CLIENT_ID_ENTRY_PARAM}=${encodeURIComponent(clientId)}`;
+  }
+
+  // Try immediately (gtag.js has usually finished long before a visitor
+  // scrolls to the contact form) and again right before the lazily-loaded
+  // iframe is about to enter the viewport, to give the GA cookie the best
+  // possible chance of already being set.
+  applyClientId();
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        applyClientId();
+        obs.disconnect();
+      }
+    });
+  }, { rootMargin: '600px' });
+  observer.observe(formFrame);
+})();
+
 // Language toggle
 // Pages can override the toggled <title> by setting window.PAGE_TITLES
 // (see policy.html) before this script runs; otherwise the site default applies.

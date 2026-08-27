@@ -40,71 +40,77 @@ then visit `http://localhost:8000`.
    questions himself, he'd need to be added as an editor or receive an
    ownership transfer — see "Contact form" below.
 
-## Bilingual (English / 中文)
+## Trilingual (English / 中文 / Español)
 
-Every piece of visible text has an English and a Chinese version living side
-by side in the HTML. There are two real URL trees — English at `/` and
-`/policy.html`, Chinese at `/zh/` and `/zh/policy.html` — and the "中文" / "EN"
-button in the nav **navigates** between them (not an in-place content flip).
+Every piece of visible text has an English, Chinese, and Spanish version
+living side by side in the HTML. There are three real URL trees — English at
+`/` and `/policy.html`, Chinese at `/zh/` and `/zh/policy.html`, Spanish at
+`/es/` and `/es/policy.html` — and the `<select id="langSelect">` dropdown in
+the nav **navigates** between them (not an in-place content flip). The
+dropdown replaced an earlier two-way toggle button once a third language made
+a binary button unworkable; a `<select>` scales to any number of languages
+without further UI changes.
 
-- English text is wrapped in `<span class="lang-en">` (or a whole `<p class="lang-en">`
-  for longer passages); the Chinese counterpart uses `class="lang-zh" hidden`
-  on the English pages, and vice versa on the `/zh/` pages (Chinese visible,
-  English hidden). `assets/script.js`'s `applyLang()` sets the `hidden`
-  attribute on whichever set doesn't match the active language on initial
-  load — this works for any element type, so it's used uniformly for spans,
-  paragraphs, and list items.
-- **The toggle button navigates, it doesn't just flip text.** Each page
-  declares `window.ALT_LANG_URL` before `script.js` loads (e.g. `{ zh: 'zh/' }`
-  on `index.html`, `{ en: '../' }` on `zh/index.html`) — the relative URL of
-  its counterpart in the other language. Clicking the toggle stores the
-  target language in `localStorage` and navigates to that URL, preserving
-  any `#section` hash so you land on the same section you were viewing. This
-  was a deliberate change from an earlier in-place-flip version: with two
-  real URLs now existing (for SEO — see below), users expect the button to
-  actually take them to the Chinese page, not just re-render the same URL.
-  If `document.documentElement.dataset.lang` already matches a page's native
-  language when the button targets that same language (e.g. a `zh`-preference
-  visitor landing directly on the English URL via a shared link), there's no
-  `ALT_LANG_URL` entry for it and `applyLang()` just flips in place instead
-  of navigating to itself.
+- Each language's text is wrapped in `<span class="lang-en">`,
+  `<span class="lang-zh">`, `<span class="lang-es">` (or a whole
+  `<p class="lang-*">` for longer passages). Whichever languages aren't the
+  page's active one carry a literal `hidden` attribute in the raw HTML.
+  `assets/script.js`'s `applyLang()` sets/clears `hidden` on all three sets on
+  initial load and on in-place flips — this works for any element type, so
+  it's used uniformly for spans, paragraphs, and list items.
+- **The `<select>` navigates, it doesn't just flip text.** Each page declares
+  `window.ALT_LANG_URL` before `script.js` loads — a map of the *other* two
+  languages to their relative URLs (e.g. `{ zh: 'zh/', es: 'es/' }` on
+  `index.html`; `{ en: '../', es: '../es/' }` on `zh/index.html`; `{ en: '../',
+  zh: '../zh/' }` on `es/index.html`). Choosing a language in the dropdown
+  stores it in `localStorage` and navigates to that URL, preserving any
+  `#section` hash so you land on the same section you were viewing. If the
+  chosen language is the page's own native language (no `ALT_LANG_URL` entry
+  for it), `applyLang()` just flips in place instead of navigating to itself.
 - The active language is stored in `localStorage` (`lang` key) **only when
-  the visitor explicitly clicks the toggle** — `applyLang()` takes a second
-  `persist` argument, and the initial page-load call passes `false`. This
-  matters: earlier, every page load (not just toggle clicks) wrote to
-  `localStorage`, so simply visiting `/` would silently set `lang: 'en'`,
-  which then made `/zh/` incorrectly default to English on a later visit in
-  the same browser even though the visitor never chose English. First-time
-  (and passive-visit) behavior is: `/` always shows English and `/zh/`
-  always shows Chinese, regardless of the visitor's browser/OS language —
-  neither overwrites a stored preference unless the toggle is actually
-  clicked. (Earlier, `/` used `navigator.language` to guess and would show
-  Chinese by default for visitors with a Chinese browser locale even on the
-  English URL; that was dropped once `/zh/` existed as the real Chinese
-  entry point — each URL's language is now unambiguous by design, so
-  guessing is no longer useful and only caused confusion.)
-- To edit either language's copy, find the matching `lang-en`/`lang-zh` pair
-  in `index.html` (or `zh/index.html`) and edit the text directly — just
-  keep both versions in sync when one changes.
-- **Dedicated Chinese URLs** (`/zh/index.html`, `/zh/policy.html`) exist
-  primarily for SEO/AI-crawler discoverability, and now also serve as the
-  toggle's real navigation target. Most crawlers — including AI bots like
-  GPTBot and ClaudeBot — don't execute JavaScript, so on the English pages
-  they only ever see the raw HTML, where Chinese spans carry a literal
-  `hidden` attribute; without a dedicated URL, Chinese content would be
-  invisible to those crawlers. The `/zh/` pages are the same markup with the
-  `hidden` attribute flipped onto the English spans instead, an
-  `<html lang="zh">` default, Chinese meta tags and JSON-LD, and reciprocal
-  `hreflang` tags (`en`/`zh`/`x-default`) linking the two versions in both
-  directions.
-  - **Regenerating `/zh/` after editing content**: if you change the
-    English/Chinese copy in `index.html` or `policy.html`, the `/zh/` copies
+  the visitor explicitly changes the dropdown** — `applyLang()` takes a
+  second `persist` argument, and the initial page-load call passes `false`.
+  This matters: if every page load wrote to `localStorage`, simply visiting
+  `/` would silently set `lang: 'en'`, which would then make `/zh/` or `/es/`
+  incorrectly default to English on a later visit in the same browser even
+  though the visitor never chose English. Passive-visit behavior is: `/`
+  always shows English, `/zh/` always shows Chinese, `/es/` always shows
+  Spanish, regardless of the visitor's browser/OS language — none of them
+  overwrite a stored preference unless the dropdown is actually used.
+- To edit any language's copy, find the matching `lang-en`/`lang-zh`/`lang-es`
+  triplet in `index.html` (or `zh/index.html`, `es/index.html`) and edit the
+  text directly — keep all three versions in sync when one changes.
+- **Dedicated Chinese and Spanish URLs** (`/zh/index.html`, `/zh/policy.html`,
+  `/es/index.html`, `/es/policy.html`) exist primarily for SEO/AI-crawler
+  discoverability, and also serve as the dropdown's real navigation targets.
+  Most crawlers — including AI bots like GPTBot and ClaudeBot — don't execute
+  JavaScript, so on the English pages they only ever see the raw HTML, where
+  non-English spans carry a literal `hidden` attribute; without dedicated
+  URLs, Chinese/Spanish content would be invisible to those crawlers. The
+  `/zh/` and `/es/` pages are the same markup with `hidden` flipped onto the
+  other two languages' spans instead, an `<html lang="zh">`/`<html lang="es">`
+  default, translated meta tags and JSON-LD, and reciprocal `hreflang` tags
+  (`en`/`zh`/`es`/`x-default`) linking all three versions in every direction.
+  - **Regenerating `/zh/` or `/es/` after editing content**: if you change
+    the copy in `index.html` or `policy.html`, the `/zh/` and `/es/` copies
     need the same edit applied (mirrored, not literally copied — see the
     hidden-attribute swap above) plus their translated `<head>` (title, meta
     description, OG/Twitter tags, JSON-LD) kept in sync by hand — there's no
     build step that generates one from the other automatically.
+  - **Watch out for compound classes when transforming `hidden` by script.**
+    A real bug shipped early on: a transform that matched only the exact
+    string `class="lang-en"` silently skipped elements with additional
+    classes, like `class="policy-list lang-en"` — those blocks never got
+    `hidden` added, so crawlers saw duplicate English+Chinese content in that
+    one spot on the live `/zh/policy.html` for a while. If you write a script
+    to regenerate a language variant, parse the `class` attribute's token
+    list (e.g. `class="([^"]*\blang-(?:en|zh|es)\b[^"]*)"`) rather than
+    matching the whole attribute value verbatim, and re-verify by counting
+    `lang-en`/`lang-zh`/`lang-es` occurrences (they must match) after
+    generating each variant.
 - Client's Chinese name is 王晨 (used throughout the `lang-zh` content and
-  page title); "Chen Wang" is used in English.
+  page title); "Chen Wang" is used in English and Spanish — there's no
+  separate Spanish brand name.
 
 ## Contact form (Google Forms)
 
@@ -198,22 +204,22 @@ can't observe what happens inside it directly). The fix has two halves:
 - **Testimonials** (`#testimonials`, between FAQ and Contact) — real reviews
   only, sourced from the Google Business Profile / Google Maps listing; never
   invent or paraphrase a quote. Each testimonial is credited as "Google Maps
-  review", and the Chinese version notes it's a translation (in both the
-  visible copy and the JSON-LD `reviewBody`, since the original review is in
-  English). Adding a new one: append another `.testimonial-card` block (see
-  the existing one for structure) to both `index.html` and `zh/index.html`,
-  and add a matching entry to the `review` array in both files' JSON-LD —
-  update `aggregateRating.reviewCount` (and `ratingValue` if the average
-  changes) to match reality, since this must reflect the actual Business
-  Profile rating.
-- **Studio Policy** — the homepage `#policy` section holds a short bilingual
-  summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`
-  paragraphs directly in `index.html`. The full 8-section policy (trial
-  lesson/enrollment, payment, cancellations, refunds, holidays,
+  review", and the Chinese/Spanish versions note it's a translation (in both
+  the visible copy and the JSON-LD `reviewBody`, since the original review is
+  in English). Adding a new one: append another `.testimonial-card` block
+  (see the existing one for structure) to `index.html`, `zh/index.html`, and
+  `es/index.html`, and add a matching entry to the `review` array in all
+  three files' JSON-LD — update `aggregateRating.reviewCount` (and
+  `ratingValue` if the average changes) to match reality, since this must
+  reflect the actual Business Profile rating.
+- **Studio Policy** — the homepage `#policy` section holds a short trilingual
+  summary plus a "View Entire Policy" button; edit its `lang-en`/`lang-zh`/
+  `lang-es` paragraphs directly in `index.html`. The full 8-section policy
+  (trial lesson/enrollment, payment, cancellations, refunds, holidays,
   parent-teacher communication, minor-student supervision, written notices)
   lives on its own page, `policy.html`, sourced from the client's Google Doc
-  and translated into Chinese. Edit the matching `lang-en`/`lang-zh` blocks
-  there to update it.
+  and translated into Chinese and Spanish. Edit the matching
+  `lang-en`/`lang-zh`/`lang-es` blocks there to update it.
 - **Studio/brand name** — "Chen Wang Sax Studio" / "王晨萨克斯工作室" appears in
   the nav logo, hero heading, `<title>`, and footer. Chen's personal name
   ("Chen Wang" / "王晨") is kept in the About bio and elsewhere it refers to
@@ -250,7 +256,7 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
   `Course` (private lessons — pricing, instructor, in-person location), and
   a `FAQPage` mirroring the on-page FAQ section word-for-word (Google
   requires this match — if you edit the FAQ section, edit the JSON-LD too).
-- **FAQ section** (`#faq`) — bilingual `<details>` accordion answering the
+- **FAQ section** (`#faq`) — trilingual `<details>` accordion answering the
   most likely search/AI-answer queries (trial lesson, location, pricing,
   cancellation policy, ages/levels, qualifications, judging). This is the
   highest-leverage section for AI answer engines (ChatGPT, Perplexity,
@@ -259,10 +265,10 @@ snippet in `<head>`, measurement ID `G-YXYPZM3SN1`. View traffic at
 - **`robots.txt`** — explicitly allows major AI crawlers (GPTBot, ClaudeBot,
   PerplexityBot, Google-Extended, etc.) in addition to standard search bots,
   since the goal is to be discoverable by AI answer engines, not just Google.
-- **`sitemap.xml`** — lists all four pages (`index.html`, `policy.html`,
-  `zh/index.html`, `zh/policy.html`) with `xhtml:link` hreflang annotations
-  on each; referenced from `robots.txt`. Add new pages here if any are
-  created.
+- **`sitemap.xml`** — lists all six pages (`index.html`, `policy.html`,
+  `zh/index.html`, `zh/policy.html`, `es/index.html`, `es/policy.html`) with
+  `xhtml:link` hreflang annotations on each; referenced from `robots.txt`.
+  Add new pages here if any are created.
 - **Favicon / logo mark** — `assets/logo-mark.png` (256×256), cropped from
   the client's logo artwork (`~/Desktop/icon logo chen wang.jpeg` — the
   circular CW/saxophone icon only, not the full lockup with "CHEN WANG SAX
@@ -297,6 +303,8 @@ index.html            Homepage content and structure
 policy.html            Full Studio Policy (linked from the homepage's Studio Policy section)
 zh/index.html           Chinese-default mirror of index.html (SEO/AI-crawler entry point)
 zh/policy.html          Chinese-default mirror of policy.html
+es/index.html           Spanish-default mirror of index.html (SEO/AI-crawler entry point)
+es/policy.html          Spanish-default mirror of policy.html
 assets/style.css       All styling
 assets/script.js        Scroll reveal, sticky header, mobile nav, back-to-top
 assets/photos/          Hero and About photos

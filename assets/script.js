@@ -45,24 +45,26 @@ function getGaClientId() {
   observer.observe(formFrame);
 })();
 
-// Language toggle
+// Language switcher (English / Chinese / Spanish)
 // Pages can override the toggled <title> by setting window.PAGE_TITLES
 // (see policy.html) before this script runs; otherwise the site default applies.
 const TITLES = window.PAGE_TITLES || {
   en: 'Chen Wang Sax Studio',
   zh: '王晨萨克斯工作室',
+  es: 'Chen Wang Sax Studio',
 };
 const NAV_TOGGLE_LABELS = {
   en: 'Toggle navigation',
   zh: '切换导航菜单',
+  es: 'Alternar navegación',
 };
 const BACK_TO_TOP_LABELS = {
   en: 'Back to top',
   zh: '返回顶部',
+  es: 'Volver arriba',
 };
 
-const langToggle = document.getElementById('langToggle');
-const langToggleTarget = langToggle.querySelector('.lang-toggle-target');
+const langSelect = document.getElementById('langSelect');
 
 function applyLang(lang, persist) {
   document.documentElement.lang = lang;
@@ -71,15 +73,16 @@ function applyLang(lang, persist) {
 
   document.querySelectorAll('.lang-en').forEach((el) => { el.hidden = lang !== 'en'; });
   document.querySelectorAll('.lang-zh').forEach((el) => { el.hidden = lang !== 'zh'; });
+  document.querySelectorAll('.lang-es').forEach((el) => { el.hidden = lang !== 'es'; });
 
-  langToggleTarget.textContent = lang === 'en' ? '中文' : 'EN';
+  langSelect.value = lang;
   document.getElementById('navToggle').setAttribute('aria-label', NAV_TOGGLE_LABELS[lang]);
   document.getElementById('backToTop').setAttribute('aria-label', BACK_TO_TOP_LABELS[lang]);
 
-  // Only persist when the visitor explicitly chose a language (toggle click).
+  // Only persist when the visitor explicitly chose a language (select change).
   // A passive page load must never overwrite a stored preference — otherwise
-  // just visiting "/" silently biases what "/zh/" (or vice versa) shows by
-  // default on a later visit.
+  // just visiting "/" silently biases what "/zh/" or "/es/" shows by default
+  // on a later visit.
   if (persist) {
     localStorage.setItem('lang', lang);
   }
@@ -87,8 +90,8 @@ function applyLang(lang, persist) {
 
 applyLang(document.documentElement.dataset.lang || 'en', false);
 
-langToggle.addEventListener('click', () => {
-  const next = document.documentElement.dataset.lang === 'en' ? 'zh' : 'en';
+langSelect.addEventListener('change', () => {
+  const next = langSelect.value;
   const altUrl = window.ALT_LANG_URL && window.ALT_LANG_URL[next];
   if (altUrl) {
     localStorage.setItem('lang', next);

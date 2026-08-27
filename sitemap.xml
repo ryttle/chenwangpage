@@ -6,6 +6,7 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://chenwangsaxstudio.com/"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://chenwangsaxstudio.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chenwangsaxstudio.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenwangsaxstudio.com/"/>
   </url>
   <url>
@@ -14,6 +15,16 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://chenwangsaxstudio.com/"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://chenwangsaxstudio.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chenwangsaxstudio.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenwangsaxstudio.com/"/>
+  </url>
+  <url>
+    <loc>https://chenwangsaxstudio.com/es/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenwangsaxstudio.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://chenwangsaxstudio.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chenwangsaxstudio.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenwangsaxstudio.com/"/>
   </url>
   <url>
@@ -22,6 +33,7 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://chenwangsaxstudio.com/policy.html"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://chenwangsaxstudio.com/zh/policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chenwangsaxstudio.com/es/policy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenwangsaxstudio.com/policy.html"/>
   </url>
   <url>
@@ -30,6 +42,16 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://chenwangsaxstudio.com/policy.html"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://chenwangsaxstudio.com/zh/policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chenwangsaxstudio.com/es/policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenwangsaxstudio.com/policy.html"/>
+  </url>
+  <url>
+    <loc>https://chenwangsaxstudio.com/es/policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenwangsaxstudio.com/policy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://chenwangsaxstudio.com/zh/policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chenwangsaxstudio.com/es/policy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenwangsaxstudio.com/policy.html"/>
   </url>
 </urlset>

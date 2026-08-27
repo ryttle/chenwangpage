@@ -313,3 +313,20 @@ robots.txt              Crawler rules (search + AI bots) + sitemap reference
 sitemap.xml             URL list for search engines
 llms.txt                Curated summary of the site for AI models/crawlers
 ```
+
+- **`assets/style.css`/`assets/script.js` cache-busting**: every `<link>`/
+  `<script>` tag across all six pages references these with a `?v=YYYYMMDD`
+  query string (e.g. `assets/script.js?v=20260827`). This exists because a
+  real bug shipped once: a visitor whose browser had already cached the old
+  `script.js` (referencing `getElementById('langToggle')`, the pre-Spanish
+  toggle button) loaded a freshly-deployed HTML page built around the new
+  `id="langSelect"` `<select>` instead — the stale script threw on a `null`
+  element and silently broke everything after it in the file, including the
+  language switcher itself. GitHub Pages doesn't set short cache lifetimes on
+  static assets by default, so without a version bump forcing a new URL, a
+  returning visitor's browser can serve a stale asset indefinitely after a
+  deploy that changes HTML/JS/CSS together. **Whenever you edit
+  `style.css` or `script.js` in a way that isn't purely additive/backward
+  compatible with the currently-live HTML, bump the `?v=` value on every
+  reference across all six pages** (a simple find-and-replace of the old date
+  for the new one) so every visitor gets the matching set on their next load.

@@ -42,72 +42,60 @@ then visit `http://localhost:8000`.
 
 ## Trilingual (English / 中文 / Español)
 
-Every piece of visible text has an English, Chinese, and Spanish version
-living side by side in the HTML. There are three real URL trees — English at
-`/` and `/policy.html`, Chinese at `/zh/` and `/zh/policy.html`, Spanish at
-`/es/` and `/es/policy.html` — and the `<select id="langSelect">` dropdown in
-the nav **navigates** between them (not an in-place content flip). The
-dropdown replaced an earlier two-way toggle button once a third language made
-a binary button unworkable; a `<select>` scales to any number of languages
-without further UI changes.
+**One URL = one language. The URL is the only source of truth.** English lives
+at `/` and `/policy.html`, Chinese at `/zh/` and `/zh/policy.html`, Spanish at
+`/es/` and `/es/policy.html`. Each of those files contains exactly one
+language's copy — `/` has no Chinese or Spanish text in it at all — and
+declares it statically as `<html lang="en" data-lang="en">`. The
+`<select id="langSelect">` dropdown in the nav does one thing: navigate to the
+current page's counterpart in the chosen language.
 
-- Each language's text is wrapped in `<span class="lang-en">`,
-  `<span class="lang-zh">`, `<span class="lang-es">` (or a whole
-  `<p class="lang-*">` for longer passages). Whichever languages aren't the
-  page's active one carry a literal `hidden` attribute in the raw HTML.
-  `assets/script.js`'s `applyLang()` sets/clears `hidden` on all three sets on
-  initial load and on in-place flips — this works for any element type, so
-  it's used uniformly for spans, paragraphs, and list items.
-- **The `<select>` navigates, it doesn't just flip text.** Each page declares
-  `window.ALT_LANG_URL` before `script.js` loads — a map of the *other* two
-  languages to their relative URLs (e.g. `{ zh: 'zh/', es: 'es/' }` on
-  `index.html`; `{ en: '../', es: '../es/' }` on `zh/index.html`; `{ en: '../',
-  zh: '../zh/' }` on `es/index.html`). Choosing a language in the dropdown
-  stores it in `localStorage` and navigates to that URL, preserving any
-  `#section` hash so you land on the same section you were viewing. If the
-  chosen language is the page's own native language (no `ALT_LANG_URL` entry
-  for it), `applyLang()` just flips in place instead of navigating to itself.
-- The active language is stored in `localStorage` (`lang` key) **only when
-  the visitor explicitly changes the dropdown** — `applyLang()` takes a
-  second `persist` argument, and the initial page-load call passes `false`.
-  This matters: if every page load wrote to `localStorage`, simply visiting
-  `/` would silently set `lang: 'en'`, which would then make `/zh/` or `/es/`
-  incorrectly default to English on a later visit in the same browser even
-  though the visitor never chose English. Passive-visit behavior is: `/`
-  always shows English, `/zh/` always shows Chinese, `/es/` always shows
-  Spanish, regardless of the visitor's browser/OS language — none of them
-  overwrite a stored preference unless the dropdown is actually used.
-- To edit any language's copy, find the matching `lang-en`/`lang-zh`/`lang-es`
-  triplet in `index.html` (or `zh/index.html`, `es/index.html`) and edit the
-  text directly — keep all three versions in sync when one changes.
-- **Dedicated Chinese and Spanish URLs** (`/zh/index.html`, `/zh/policy.html`,
-  `/es/index.html`, `/es/policy.html`) exist primarily for SEO/AI-crawler
-  discoverability, and also serve as the dropdown's real navigation targets.
-  Most crawlers — including AI bots like GPTBot and ClaudeBot — don't execute
-  JavaScript, so on the English pages they only ever see the raw HTML, where
-  non-English spans carry a literal `hidden` attribute; without dedicated
-  URLs, Chinese/Spanish content would be invisible to those crawlers. The
-  `/zh/` and `/es/` pages are the same markup with `hidden` flipped onto the
-  other two languages' spans instead, an `<html lang="zh">`/`<html lang="es">`
-  default, translated meta tags and JSON-LD, and reciprocal `hreflang` tags
-  (`en`/`zh`/`es`/`x-default`) linking all three versions in every direction.
-  - **Regenerating `/zh/` or `/es/` after editing content**: if you change
-    the copy in `index.html` or `policy.html`, the `/zh/` and `/es/` copies
-    need the same edit applied (mirrored, not literally copied — see the
-    hidden-attribute swap above) plus their translated `<head>` (title, meta
-    description, OG/Twitter tags, JSON-LD) kept in sync by hand — there's no
-    build step that generates one from the other automatically.
-  - **Watch out for compound classes when transforming `hidden` by script.**
-    A real bug shipped early on: a transform that matched only the exact
-    string `class="lang-en"` silently skipped elements with additional
-    classes, like `class="policy-list lang-en"` — those blocks never got
-    `hidden` added, so crawlers saw duplicate English+Chinese content in that
-    one spot on the live `/zh/policy.html` for a while. If you write a script
-    to regenerate a language variant, parse the `class` attribute's token
-    list (e.g. `class="([^"]*\blang-(?:en|zh|es)\b[^"]*)"`) rather than
-    matching the whole attribute value verbatim, and re-verify by counting
-    `lang-en`/`lang-zh`/`lang-es` occurrences (they must match) after
-    generating each variant.
+- **Nothing is remembered, and nothing is swapped in place.** There is no
+  `localStorage` language preference and no client-side content flipping.
+  `/` always renders English for every visitor on every visit, `/zh/` always
+  Chinese, `/es/` always Spanish. This is the whole point of the design:
+  an earlier version stored the chosen language in `localStorage` and each
+  page re-rendered itself to match on load, which meant that once a visitor
+  picked Chinese, the English homepage silently showed Chinese *forever
+  after* — the URL and the content disagreed. If a visitor should see
+  Chinese, send them to `/zh/`; don't try to make `/` become Chinese.
+- **The `<select>` navigates.** Each page declares `window.ALT_LANG_URL`
+  before `script.js` loads — a map of the *other* two languages to their
+  relative URLs (e.g. `{ zh: 'zh/', es: 'es/' }` on `index.html`;
+  `{ en: '../', es: '../es/' }` on `zh/index.html`; `{ en: '../', zh: '../zh/' }`
+  on `es/index.html`). Choosing a language navigates to that URL, preserving
+  any `#section` hash so you land on the same section you were viewing, and
+  staying on the same page (`/es/policy.html` → `/policy.html`, not `/`).
+- **`data-lang` is not decorative** — `style.css` keys the Chinese font stack
+  off `html[data-lang="zh"]`, so the attribute must stay on the `<html>` tag
+  of the `/zh/` pages.
+- Copy is still wrapped in `<span class="lang-en">` / `lang-zh` / `lang-es`
+  (or a whole `<p class="lang-*">`/`<ul class="policy-list lang-es">` for
+  longer passages), but each file now only ever contains its own language's
+  set. The classes are kept purely as markers so a future regeneration script
+  can still identify which block is which; no CSS or JS depends on them.
+- To edit copy, edit the file for that language directly. The three files are
+  independent — **keep them in sync by hand when the content changes**, since
+  there's no build step generating one from another.
+- **Why dedicated URLs rather than one page that switches:** crawlers,
+  especially AI bots like GPTBot and ClaudeBot, mostly don't execute
+  JavaScript. A single page that swaps languages client-side is only ever
+  seen in its raw-HTML language, so the other languages are invisible to them.
+  Three real URLs, each fully rendered in one language server-side, with
+  reciprocal `hreflang` tags (`en`/`zh`/`es`/`x-default`) linking all three in
+  every direction, is what makes each language independently indexable. It
+  also removes the duplicate-hidden-content problem entirely: previously each
+  page shipped all three languages with two of them carrying a literal
+  `hidden` attribute, which both tripled page weight and risked crawlers
+  reading the hidden copy.
+  - **If you regenerate a language variant by script, parse the `class`
+    attribute's token list** (e.g. `class="([^"]*\blang-(?:en|zh|es)\b[^"]*)"`)
+    rather than matching the whole attribute value verbatim. A real bug
+    shipped early on because a transform matched only the exact string
+    `class="lang-en"` and silently skipped elements with additional classes
+    like `class="policy-list lang-en"`, leaving those blocks unhidden on the
+    live `/zh/policy.html`. Always re-verify by counting `lang-*` occurrences
+    per file afterwards.
 - Client's Chinese name is 王晨 (used throughout the `lang-zh` content and
   page title); "Chen Wang" is used in English and Spanish — there's no
   separate Spanish brand name.

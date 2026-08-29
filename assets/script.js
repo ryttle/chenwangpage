@@ -46,13 +46,13 @@ function getGaClientId() {
 })();
 
 // Language switcher (English / Chinese / Spanish)
-// Pages can override the toggled <title> by setting window.PAGE_TITLES
-// (see policy.html) before this script runs; otherwise the site default applies.
-const TITLES = window.PAGE_TITLES || {
-  en: 'Chen Wang Sax Studio',
-  zh: '王晨萨克斯工作室',
-  es: 'Chen Wang Sax Studio',
-};
+//
+// Each URL serves exactly one language and says so statically in its own HTML
+// (`<html lang="..." data-lang="...">`, one set of copy, a translated <head>).
+// Nothing here rewrites page content or remembers a preference: the URL is the
+// single source of truth, so "/" is always English, "/zh/" always Chinese and
+// "/es/" always Spanish, for every visitor on every visit. The <select> simply
+// navigates to the current page's counterpart in the chosen language.
 const NAV_TOGGLE_LABELS = {
   en: 'Toggle navigation',
   zh: '切换导航菜单',
@@ -64,42 +64,23 @@ const BACK_TO_TOP_LABELS = {
   es: 'Volver arriba',
 };
 
+const pageLang = document.documentElement.dataset.lang || 'en';
 const langSelect = document.getElementById('langSelect');
 
-function applyLang(lang, persist) {
-  document.documentElement.lang = lang;
-  document.documentElement.dataset.lang = lang;
-  document.title = TITLES[lang];
+document.getElementById('navToggle').setAttribute('aria-label', NAV_TOGGLE_LABELS[pageLang]);
+document.getElementById('backToTop').setAttribute('aria-label', BACK_TO_TOP_LABELS[pageLang]);
 
-  document.querySelectorAll('.lang-en').forEach((el) => { el.hidden = lang !== 'en'; });
-  document.querySelectorAll('.lang-zh').forEach((el) => { el.hidden = lang !== 'zh'; });
-  document.querySelectorAll('.lang-es').forEach((el) => { el.hidden = lang !== 'es'; });
-
-  langSelect.value = lang;
-  document.getElementById('navToggle').setAttribute('aria-label', NAV_TOGGLE_LABELS[lang]);
-  document.getElementById('backToTop').setAttribute('aria-label', BACK_TO_TOP_LABELS[lang]);
-
-  // Only persist when the visitor explicitly chose a language (select change).
-  // A passive page load must never overwrite a stored preference — otherwise
-  // just visiting "/" silently biases what "/zh/" or "/es/" shows by default
-  // on a later visit.
-  if (persist) {
-    localStorage.setItem('lang', lang);
-  }
+if (langSelect) {
+  langSelect.value = pageLang;
+  langSelect.addEventListener('change', () => {
+    const altUrl = window.ALT_LANG_URL && window.ALT_LANG_URL[langSelect.value];
+    if (altUrl) {
+      window.location.href = altUrl + window.location.hash;
+    } else {
+      langSelect.value = pageLang; // already on this language's URL
+    }
+  });
 }
-
-applyLang(document.documentElement.dataset.lang || 'en', false);
-
-langSelect.addEventListener('change', () => {
-  const next = langSelect.value;
-  const altUrl = window.ALT_LANG_URL && window.ALT_LANG_URL[next];
-  if (altUrl) {
-    localStorage.setItem('lang', next);
-    window.location.href = altUrl + window.location.hash;
-    return;
-  }
-  applyLang(next, true);
-});
 
 const navToggle = document.getElementById('navToggle');
 const siteNav = document.getElementById('siteNav');

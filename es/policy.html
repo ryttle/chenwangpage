@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,22 +33,11 @@
 <meta property="og:locale:alternate" content="zh_CN">
 <script>
 window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
-(function () {
-  var saved = localStorage.getItem('lang');
-  var lang = saved || 'es';
-  document.documentElement.lang = lang;
-  document.documentElement.dataset.lang = lang;
-  window.PAGE_TITLES = {
-    en: 'Studio Policy | Chen Wang Sax Studio',
-    zh: '工作室政策 | 王晨萨克斯工作室',
-    es: 'Política del Estudio | Chen Wang Sax Studio',
-  };
-})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=20260827">
+<link rel="stylesheet" href="../assets/style.css?v=20260829">
 </head>
 <body>
 
@@ -56,19 +45,17 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
   <div class="container header-inner">
     <a href="index.html#top" class="logo">
       <img src="../assets/logo-mark.png" alt="" class="logo-mark">
-      <span class="lang-en" hidden>Chen Wang Sax Studio</span>
-      <span class="lang-zh" hidden>王晨萨克斯工作室</span>
       <span class="lang-es">Chen Wang Sax Studio</span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" id="siteNav">
-      <a href="index.html#about"><span class="lang-en" hidden>About</span><span class="lang-zh" hidden>关于</span><span class="lang-es">Acerca de</span></a>
-      <a href="index.html#arrangement"><span class="lang-en" hidden>Recent Arrangement</span><span class="lang-zh" hidden>近期改编</span><span class="lang-es">Arreglo Reciente</span></a>
-      <a href="index.html#recordings"><span class="lang-en" hidden>Recordings</span><span class="lang-zh" hidden>录音作品</span><span class="lang-es">Grabaciones</span></a>
-      <a href="index.html#policy"><span class="lang-en" hidden>Studio Policy</span><span class="lang-zh" hidden>工作室政策</span><span class="lang-es">Política del Estudio</span></a>
-      <a href="index.html#contact"><span class="lang-en" hidden>Contact</span><span class="lang-zh" hidden>联系方式</span><span class="lang-es">Contacto</span></a>
+      <a href="index.html#about"><span class="lang-es">Acerca de</span></a>
+      <a href="index.html#arrangement"><span class="lang-es">Arreglo Reciente</span></a>
+      <a href="index.html#recordings"><span class="lang-es">Grabaciones</span></a>
+      <a href="index.html#policy"><span class="lang-es">Política del Estudio</span></a>
+      <a href="index.html#contact"><span class="lang-es">Contacto</span></a>
       <select class="lang-select" id="langSelect" aria-label="Switch language">
         <option value="en">English</option>
         <option value="zh">中文</option>
@@ -82,32 +69,16 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
   <section id="top" class="section policy-page">
     <div class="container policy-article">
       <a class="back-link" href="index.html#policy">
-        <span class="lang-en" hidden>&larr; Back to Chen Wang Sax Studio</span>
-        <span class="lang-zh" hidden>&larr; 返回王晨萨克斯工作室</span>
         <span class="lang-es">&larr; Volver a Chen Wang Sax Studio</span>
       </a>
 
       <h2>
-        <span class="lang-en" hidden>Saxophone Studio Policy</span>
-        <span class="lang-zh" hidden>萨克斯工作室政策</span>
         <span class="lang-es">Política del Estudio de Saxofón</span>
       </h2>
       <p class="policy-subtitle">
-        <span class="lang-en" hidden>Private Home-Studio Instruction &mdash; Enrollment, Payment &amp; Studio Expectations</span>
-        <span class="lang-zh" hidden>私人家庭工作室教学 — 报名、付款与工作室须知</span>
         <span class="lang-es">Instrucción Privada en Estudio Casero &mdash; Inscripción, Pago y Expectativas del Estudio</span>
       </p>
 
-      <p class="policy-intro lang-en" hidden>
-        Welcome to Chen Wang Saxophone Studio, a private teaching studio operated by Chen Wang in his
-        residence. This policy is designed to support consistent instruction, respectful scheduling, and
-        clear communication among students, families, and the teacher. Please review it carefully before
-        enrolling.
-      </p>
-      <p class="policy-intro lang-zh" hidden>
-        欢迎来到王晨萨克斯工作室——由王晨在其住所运营的私人教学工作室。本政策旨在保障稳定的教学安排、
-        彼此尊重的排课方式，以及学生、家长与教师之间的清晰沟通。请在报名前仔细阅读本政策。
-      </p>
       <p class="policy-intro lang-es">
         Bienvenido a Chen Wang Saxophone Studio, un estudio de enseñanza privada operado por Chen Wang en
         su residencia. Esta política está diseñada para respaldar una instrucción constante, una
@@ -116,24 +87,8 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </p>
 
       <h3>
-        <span class="lang-en" hidden>1. Trial Lesson, Enrollment, and Schedule</span>
-        <span class="lang-zh" hidden>1. 试听课、报名与课程安排</span>
         <span class="lang-es">1. Clase de Prueba, Inscripción y Horario</span>
       </h3>
-      <ul class="policy-list lang-en" hidden>
-        <li><strong>Complimentary trial.</strong> Each prospective student may receive one complimentary 30-minute trial lesson, subject to availability. The trial has no cash value and does not create an ongoing reservation of a weekly lesson time.</li>
-        <li><strong>Regular lessons.</strong> Regular private lessons are 45 minutes and are normally held once each week at a recurring day and time agreed upon by the student and the Studio.</li>
-        <li><strong>Tuition.</strong> The lesson rate is $100 per 45-minute one-on-one lesson.</li>
-        <li><strong>Four-lesson billing cycle.</strong> Tuition is prepaid in groups of four lessons. The amount due for each cycle is $400 and must be paid before the first lesson in that four-lesson cycle.</li>
-        <li><strong>No registration fee.</strong> The Studio does not charge a registration or enrollment fee.</li>
-      </ul>
-      <ul class="policy-list lang-zh" hidden>
-        <li><strong>免费试听课。</strong>每位新生均可获得一次30分钟的免费试听课，具体安排视工作室档期而定。试听课不具备现金价值，也不代表自动预留每周固定的上课时间。</li>
-        <li><strong>常规课程。</strong>常规一对一课程时长为45分钟，通常每周固定一次，具体时间由学生与工作室协商确定。</li>
-        <li><strong>学费。</strong>每节45分钟一对一课程收费100美元。</li>
-        <li><strong>四节课计费周期。</strong>学费按每四节课为一个周期预先支付，每个周期共计400美元，须在该周期第一节课前付清。</li>
-        <li><strong>无报名费。</strong>工作室不收取任何报名或注册费用。</li>
-      </ul>
       <ul class="policy-list lang-es">
         <li><strong>Clase de prueba gratuita.</strong> Cada estudiante potencial puede recibir una clase de prueba gratuita de 30 minutos, sujeta a disponibilidad. La clase de prueba no tiene valor monetario y no genera una reserva continua de un horario semanal de clases.</li>
         <li><strong>Clases regulares.</strong> Las clases privadas regulares duran 45 minutos y normalmente se imparten una vez por semana, en un día y horario recurrentes acordados entre el estudiante y el Estudio.</li>
@@ -143,20 +98,8 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </ul>
 
       <h3>
-        <span class="lang-en" hidden>2. Payment Method and Payment Records</span>
-        <span class="lang-zh" hidden>2. 付款方式与付款记录</span>
         <span class="lang-es">2. Método de Pago y Registro de Pagos</span>
       </h3>
-      <ul class="policy-list lang-en" hidden>
-        <li><strong>Cash payment.</strong> The Studio accepts payment in cash only. Credit cards, debit cards, personal checks, cashier's checks, money orders, Venmo, and other electronic payment services are not accepted.</li>
-        <li><strong>Invoices and receipts.</strong> The Studio does not issue invoices or receipts for lesson payments. The Studio maintains its own internal payment records.</li>
-        <li><strong>Reserved lesson time.</strong> A recurring lesson time is reserved only while the student's current four-lesson cycle is paid and the student remains actively enrolled.</li>
-      </ul>
-      <ul class="policy-list lang-zh" hidden>
-        <li><strong>现金付款。</strong>工作室仅接受现金付款，不接受信用卡、借记卡、个人支票、银行本票、汇票、Venmo及其他电子支付方式。</li>
-        <li><strong>发票与收据。</strong>工作室不为课程付款开具发票或收据，但会自行保留内部付款记录。</li>
-        <li><strong>固定课时保留。</strong>仅当学生当前四节课周期的学费已付清且保持在读状态时，其固定课时才会被保留。</li>
-      </ul>
       <ul class="policy-list lang-es">
         <li><strong>Pago en efectivo.</strong> El Estudio acepta pagos únicamente en efectivo. No se aceptan tarjetas de crédito, tarjetas de débito, cheques personales, cheques de caja, giros postales, Venmo ni otros servicios de pago electrónico.</li>
         <li><strong>Facturas y recibos.</strong> El Estudio no emite facturas ni recibos por los pagos de las clases. El Estudio mantiene sus propios registros internos de pago.</li>
@@ -164,26 +107,8 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </ul>
 
       <h3>
-        <span class="lang-en" hidden>3. Cancellations, Absences, and Rescheduling</span>
-        <span class="lang-zh" hidden>3. 取消、缺席与改期</span>
         <span class="lang-es">3. Cancelaciones, Ausencias y Reprogramaciones</span>
       </h3>
-      <ul class="policy-list lang-en" hidden>
-        <li><strong>Twenty-four-hour notice.</strong> A student may cancel or request to reschedule a lesson for any reason by emailing the teacher at least 24 hours before the scheduled start time. There is no fixed limit on properly noticed cancellations.</li>
-        <li><strong>Same-day illness.</strong> When a student becomes ill on the lesson day, the family may cancel by email before the lesson begins. A same-day cancellation may be excused for illness and may be rescheduled or credited, subject to the teacher's availability.</li>
-        <li><strong>Other same-day cancellations.</strong> If less than 24 hours' notice is provided for a reason other than illness, the lesson will normally be treated as used and the lesson fee will not be refunded. The Studio understands that unexpected circumstances occur and will communicate respectfully about unusual situations.</li>
-        <li><strong>No-show or forgotten lesson.</strong> A lesson missed without notice, including a lesson forgotten by the student or family, is treated as used and is not eligible for a refund or replacement lesson.</li>
-        <li><strong>Make-up scheduling.</strong> Eligible make-up lessons depend on the teacher's schedule and may not be available at the student's preferred day or time.</li>
-        <li><strong>Teacher cancellation.</strong> If the teacher cancels a lesson, the student may choose a make-up lesson, a credit toward a future lesson, or a refund for that lesson.</li>
-      </ul>
-      <ul class="policy-list lang-zh" hidden>
-        <li><strong>提前24小时通知。</strong>学生可因任何原因，在课程开始前至少24小时通过邮件通知教师取消或改期，且对按时通知的取消次数没有固定限制。</li>
-        <li><strong>当天生病。</strong>若学生在上课当天生病，家长可在课程开始前通过邮件取消。因生病导致的当天取消可获豁免，并可视教师档期安排改期或抵扣课时。</li>
-        <li><strong>其他当天取消。</strong>若因生病以外的原因未能提前24小时通知，该课程通常将被视为已上课，课程费用不予退还。工作室理解突发情况在所难免，遇特殊情形会保持礼貌沟通。</li>
-        <li><strong>缺席未通知或忘记上课。</strong>未经通知缺席的课程（包括学生或家长忘记上课的情况）将被视为已上课，不予退款或补课。</li>
-        <li><strong>补课安排。</strong>符合条件的补课需视教师档期而定，未必能安排在学生偏好的日期或时间。</li>
-        <li><strong>教师方取消。</strong>若教师方取消课程，学生可选择补课、抵扣未来课程费用，或就该节课申请退款。</li>
-      </ul>
       <ul class="policy-list lang-es">
         <li><strong>Aviso de veinticuatro horas.</strong> Un estudiante puede cancelar o solicitar cambiar el horario de una clase por cualquier motivo, enviando un correo electrónico al profesor con al menos 24 horas de anticipación a la hora de inicio programada. No existe un límite fijo para las cancelaciones notificadas correctamente.</li>
         <li><strong>Enfermedad el mismo día.</strong> Si un estudiante se enferma el día de la clase, la familia puede cancelar por correo electrónico antes de que comience la clase. Una cancelación el mismo día puede ser justificada por enfermedad y podrá reprogramarse o acreditarse, según la disponibilidad del profesor.</li>
@@ -194,45 +119,18 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </ul>
 
       <h3>
-        <span class="lang-en" hidden>4. Refunds and Withdrawal</span>
-        <span class="lang-zh" hidden>4. 退款与退课</span>
         <span class="lang-es">4. Reembolsos y Retiro</span>
       </h3>
-      <p class="lang-en" hidden>
-        Tuition already earned for completed lessons is non-refundable. Fees for no-shows, forgotten
-        lessons, and other late cancellations treated as used under Section 3 are also non-refundable.
-      </p>
-      <p class="lang-zh" hidden>
-        已完成课程所对应的学费不予退还。根据第3条被视为已上课的缺席未通知、忘记上课及其他逾期取消所
-        产生的费用，同样不予退还。
-      </p>
       <p class="lang-es">
         El pago correspondiente a las clases ya completadas no es reembolsable. Las tarifas por
         inasistencias, clases olvidadas y otras cancelaciones tardías consideradas como utilizadas según
         la Sección 3 tampoco son reembolsables.
-      </p>
-      <p class="lang-en" hidden>
-        A student may withdraw and request a refund of the unused portion of a prepaid four-lesson cycle
-        by emailing the Studio at least 24 hours before the next scheduled lesson. Refunds will normally
-        be returned within 10 business days, with written confirmation of the amount returned.
-      </p>
-      <p class="lang-zh" hidden>
-        学生如需退课，可在下一节预定课程开始前至少24小时通过邮件通知工作室，申请退还预付四节课周期中
-        尚未使用部分的费用。退款通常将在10个工作日内退还，并以书面形式确认退还金额。
       </p>
       <p class="lang-es">
         Un estudiante puede retirarse y solicitar el reembolso de la parte no utilizada de un ciclo de
         cuatro clases prepagado, enviando un correo electrónico al Estudio con al menos 24 horas de
         anticipación a la próxima clase programada. Los reembolsos normalmente se realizarán dentro de los
         10 días hábiles siguientes, con confirmación por escrito del monto reembolsado.
-      </p>
-      <p class="lang-en" hidden>
-        A properly cancelled individual lesson may instead be rescheduled, credited, or refunded, as
-        agreed in writing. The Studio does not charge an administrative fee for an eligible refund.
-      </p>
-      <p class="lang-zh" hidden>
-        对于按规定正常取消的单节课程，也可根据书面约定选择改期、抵扣或退款。工作室不会就符合条件的
-        退款收取任何手续费。
       </p>
       <p class="lang-es">
         Una clase individual cancelada correctamente podrá, en cambio, reprogramarse, acreditarse o
@@ -241,21 +139,8 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </p>
 
       <h3>
-        <span class="lang-en" hidden>5. Studio Holidays, Teacher Leave, and Weather</span>
-        <span class="lang-zh" hidden>5. 工作室假期、教师请假与天气因素</span>
         <span class="lang-es">5. Días Festivos del Estudio, Permisos del Profesor y Clima</span>
       </h3>
-      <p class="lang-en" hidden>
-        The Studio will provide reasonable notice of scheduled holidays and personal leave. If the Studio
-        closes because of severe weather or another safety concern, affected lessons will be rescheduled,
-        credited, or refunded. Each family remains responsible for deciding whether travel is safe;
-        students should email as early as reasonably possible if local conditions prevent attendance.
-      </p>
-      <p class="lang-zh" hidden>
-        工作室将就已安排的假期与教师个人请假提前合理通知。若因恶劣天气或其他安全因素导致工作室临时
-        关闭，受影响的课程将安排改期、抵扣或退款。是否适宜出行由各家庭自行判断决定；若当地情况导致
-        学生无法到课，请尽早通过邮件告知工作室。
-      </p>
       <p class="lang-es">
         El Estudio proporcionará un aviso razonable de los días festivos programados y de los permisos
         personales. Si el Estudio cierra debido a condiciones climáticas severas u otra preocupación de
@@ -265,48 +150,19 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </p>
 
       <h3>
-        <span class="lang-en" hidden>6. Parent&ndash;Teacher Communication</span>
-        <span class="lang-zh" hidden>6. 家长与教师沟通</span>
         <span class="lang-es">6. Comunicación entre Padres y Profesor</span>
       </h3>
-      <p class="lang-en" hidden>
-        Parents and guardians are welcome to use a portion of the student's scheduled lesson time to
-        discuss progress, goals, practice habits, or concerns. For example, during a 45-minute lesson,
-        instruction may conclude approximately one to two minutes early for a brief update.
-      </p>
-      <p class="lang-zh" hidden>
-        欢迎家长或监护人利用学生课程时间的一小部分，与教师沟通学习进度、目标、练习习惯或其他相关
-        问题。例如，在45分钟的课程中，教学可能会提前约一到两分钟结束，以便进行简短沟通。
-      </p>
       <p class="lang-es">
         Los padres y tutores pueden utilizar una parte del horario de clase programado del estudiante
         para conversar sobre el progreso, los objetivos, los hábitos de práctica o cualquier inquietud.
         Por ejemplo, durante una clase de 45 minutos, la instrucción puede finalizar aproximadamente uno o
         dos minutos antes para una breve actualización.
       </p>
-      <p class="lang-en" hidden>
-        Substantive conferences should take place during the student's scheduled lesson time. To protect
-        teaching, preparation, and rest periods, parents and students should not expect unscheduled
-        conferences during breaks or outside lesson hours.
-      </p>
-      <p class="lang-zh" hidden>
-        较为深入的沟通交流应安排在学生的课程时间内进行。为保障教学、备课及休息时间不受影响，请勿
-        期待在课间休息或课程时间以外进行未经安排的临时沟通。
-      </p>
       <p class="lang-es">
         Las conversaciones más extensas deben realizarse durante el horario de clase programado del
         estudiante. Para proteger los períodos de enseñanza, preparación y descanso, los padres y
         estudiantes no deben esperar reuniones no programadas durante los descansos o fuera del horario
         de clases.
-      </p>
-      <p class="lang-en" hidden>
-        Email is the preferred communication method. The Studio will normally reply within 48 hours,
-        excluding legal holidays, announced personal leave, and periods when the teacher is unavailable
-        because of illness or emergency.
-      </p>
-      <p class="lang-zh" hidden>
-        邮件是首选的沟通方式。工作室通常会在48小时内回复（法定节假日、已公布的个人请假期间，以及
-        教师因病或紧急情况无法处理事务的时段除外）。
       </p>
       <p class="lang-es">
         El correo electrónico es el medio de comunicación preferido. El Estudio normalmente responderá
@@ -315,40 +171,14 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </p>
 
       <h3>
-        <span class="lang-en" hidden>7. Minor Students, Supervision, and Transportation</span>
-        <span class="lang-zh" hidden>7. 未成年学生、看护与接送</span>
         <span class="lang-es">7. Estudiantes Menores de Edad, Supervisión y Transporte</span>
       </h3>
-      <p class="lang-en" hidden>
-        Chen Wang Saxophone Studio provides private music instruction only and is not a school, daycare,
-        childcare, transportation, or babysitting service. The teacher's responsibility for a minor
-        student is limited to reasonable supervision during the student's scheduled lesson and within the
-        designated teaching area of the residence.
-      </p>
-      <p class="lang-zh" hidden>
-        王晨萨克斯工作室仅提供私人音乐教学服务，并非学校、日托、托儿、接送或临时看护机构。教师对未
-        成年学生的责任，仅限于在其课程时间内、于住所指定教学区域内进行合理看护。
-      </p>
       <p class="lang-es">
         Chen Wang Saxophone Studio ofrece únicamente instrucción musical privada y no es una escuela,
         guardería, servicio de cuidado infantil, transporte ni niñera. La responsabilidad del profesor
         respecto a un estudiante menor de edad se limita a una supervisión razonable durante el horario
         de clase programado y dentro del área de enseñanza designada en la residencia.
       </p>
-      <ul class="policy-list lang-en" hidden>
-        <li><strong>Arrival and departure.</strong> The parent or legal guardian is solely responsible for arranging safe and timely transportation, drop-off, and pick-up. Responsibility for the student before the lesson begins and immediately after it ends remains with the parent or guardian.</li>
-        <li><strong>Parent availability.</strong> If a parent or guardian leaves during the lesson, that adult must remain reachable by phone and return by the scheduled ending time. The Studio may require a parent or guardian to remain present when reasonably necessary because of the student's age, needs, behavior, or safety.</li>
-        <li><strong>Late pick-up.</strong> If an unavoidable delay occurs, the parent or guardian must notify the teacher promptly. The teacher does not assume an ongoing duty of childcare because a parent or guardian is late.</li>
-        <li><strong>Home studio boundaries.</strong> Students and accompanying family members must remain in the designated lesson or waiting area and respect the privacy, property, household members, and safety rules of the residence.</li>
-        <li><strong>Emergency contact.</strong> The parent or guardian must provide accurate emergency contact information and promptly update any relevant medical, allergy, behavioral, or accessibility information needed for a reasonably safe lesson.</li>
-      </ul>
-      <ul class="policy-list lang-zh" hidden>
-        <li><strong>到达与离开。</strong>安排安全、准时的接送完全是家长或法定监护人的责任。课程开始前及结束后的学生看护责任，均由家长或监护人承担。</li>
-        <li><strong>家长可联系性。</strong>若家长或监护人在课程期间离开，须保持电话畅通，并在课程预定结束时间前返回。若因学生年龄、需求、行为或安全等因素确有必要，工作室可能要求家长或监护人在场陪同。</li>
-        <li><strong>接送迟到。</strong>如遇不可避免的延误，家长或监护人须及时通知教师。教师不会因家长或监护人迟到而承担持续看护学生的责任。</li>
-        <li><strong>家庭工作室范围。</strong>学生及陪同家属须停留在指定的上课或等候区域，并尊重该住所的隐私、财产、家庭成员及安全规定。</li>
-        <li><strong>紧急联系方式。</strong>家长或监护人须提供准确的紧急联系信息，并及时更新任何与课程安全相关的医疗、过敏、行为或特殊需求信息。</li>
-      </ul>
       <ul class="policy-list lang-es">
         <li><strong>Llegada y salida.</strong> El padre, madre o tutor legal es el único responsable de organizar el transporte, la entrega y la recogida de manera segura y puntual. La responsabilidad del estudiante antes de que comience la clase e inmediatamente después de que termine sigue siendo del padre, madre o tutor.</li>
         <li><strong>Disponibilidad de los padres.</strong> Si un padre, madre o tutor se retira durante la clase, dicho adulto debe permanecer localizable por teléfono y regresar antes de la hora de finalización programada. El Estudio puede requerir que un padre, madre o tutor permanezca presente cuando sea razonablemente necesario debido a la edad, las necesidades, el comportamiento o la seguridad del estudiante.</li>
@@ -356,15 +186,6 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
         <li><strong>Límites del estudio en el hogar.</strong> Los estudiantes y los familiares que los acompañen deben permanecer en el área de clase o de espera designada, y respetar la privacidad, la propiedad, a los miembros del hogar y las normas de seguridad de la residencia.</li>
         <li><strong>Contacto de emergencia.</strong> El padre, madre o tutor debe proporcionar información de contacto de emergencia precisa y actualizar con prontitud cualquier información médica, de alergias, de comportamiento o de accesibilidad relevante que sea necesaria para una clase razonablemente segura.</li>
       </ul>
-      <p class="lang-en" hidden>
-        Nothing in this policy waives responsibility for conduct that cannot lawfully be waived. This
-        section clarifies the limited instructional role of the Studio and the continuing responsibilities
-        of the parent or legal guardian.
-      </p>
-      <p class="lang-zh" hidden>
-        本政策的任何内容均不构成对法律上不可豁免责任的放弃。本节旨在明确工作室有限的教学职责范围，
-        以及家长或法定监护人应持续承担的责任。
-      </p>
       <p class="lang-es">
         Nada en esta política renuncia a la responsabilidad por conductas que legalmente no pueden ser
         renunciadas. Esta sección aclara el rol limitado de instrucción del Estudio y las responsabilidades
@@ -372,22 +193,8 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
       </p>
 
       <h3>
-        <span class="lang-en" hidden>8. Written Notices and Policy Updates</span>
-        <span class="lang-zh" hidden>8. 书面通知与政策更新</span>
         <span class="lang-es">8. Avisos por Escrito y Actualizaciones de la Política</span>
       </h3>
-      <p class="lang-en" hidden>
-        All cancellations, rescheduling requests, refund requests, and withdrawal notices must be emailed
-        to <a href="mailto:Chenwangsax@gmail.com">Chenwangsax@gmail.com</a>. A message is effective when
-        received by the Studio. The Studio may update this policy by providing reasonable written notice;
-        changes will not retroactively reduce lessons already purchased or alter an already earned refund.
-      </p>
-      <p class="lang-zh" hidden>
-        所有取消、改期申请、退款申请及退课通知，均须发送邮件至
-        <a href="mailto:Chenwangsax@gmail.com">Chenwangsax@gmail.com</a>。相关通知自工作室收到之时起
-        生效。工作室可在提前合理书面通知的前提下更新本政策；政策变更不会追溯削减已购买的课程，也不会
-        更改已产生的退款金额。
-      </p>
       <p class="lang-es">
         Todas las cancelaciones, solicitudes de reprogramación, solicitudes de reembolso y avisos de
         retiro deben enviarse por correo electrónico a
@@ -397,15 +204,6 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
         reembolso ya generado.
       </p>
 
-      <p class="policy-closing lang-en" hidden>
-        Enrolling a student in lessons, or continuing lessons after this policy is shared, constitutes
-        agreement to these terms. If the student is a minor, the parent or legal guardian agrees on the
-        student's behalf.
-      </p>
-      <p class="policy-closing lang-zh" hidden>
-        为学生报名课程，或在收到本政策后继续上课，即视为同意本政策条款。若学生为未成年人，则由家长
-        或法定监护人代为同意。
-      </p>
       <p class="policy-closing lang-es">
         Inscribir a un estudiante en las clases, o continuar con las clases después de que se comparta
         esta política, constituye la aceptación de estos términos. Si el estudiante es menor de edad, el
@@ -419,8 +217,6 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
   <div class="container footer-inner">
     <p>
       &copy; <span class="year-el"></span>
-      <span class="lang-en" hidden>Chen Wang Sax Studio. All rights reserved.</span>
-      <span class="lang-zh" hidden>王晨萨克斯工作室。版权所有。</span>
       <span class="lang-es">Chen Wang Sax Studio. Todos los derechos reservados.</span>
     </p>
     <div class="social-links">
@@ -431,6 +227,6 @@ window.ALT_LANG_URL = { en: '../policy.html', zh: '../zh/policy.html' };
 
 <a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</a>
 
-<script src="../assets/script.js?v=20260827"></script>
+<script src="../assets/script.js?v=20260829"></script>
 </body>
 </html>
